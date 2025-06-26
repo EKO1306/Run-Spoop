@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://dcpc0m8wnpq1q"]
+[gd_scene load_steps=10 format=4 uid="uid://dcpc0m8wnpq1q"]
 
 [ext_resource type="Texture2D" uid="uid://ddwu0vv0epdul" path="res://Images/Tiles/Sewer.png" id="1_lc1oi"]
 [ext_resource type="Texture2D" uid="uid://402toutt5sue" path="res://Images/Tiles/Sewer-Normal.png" id="2_8od7v"]
 [ext_resource type="PackedScene" uid="uid://tfyuf421rpdw" path="res://Nodes/player.tscn" id="3_qc4db"]
+[ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="4_ys1qc"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lc1oi"]
 diffuse_texture = ExtResource("1_lc1oi")
@@ -155,6 +156,7 @@ use_texture_padding = false
 2:3/0/terrains_peering_bit/bottom_left_corner = 1
 2:3/0/terrains_peering_bit/left_side = 1
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_qc4db"]
 occlusion_layer_0/light_mask = 1
@@ -197,3 +199,7 @@ blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_qc4db")]
 position = Vector2(-15, -36)
+motion_mode = 1
+
+[node name="Floof" parent="." instance=ExtResource("4_ys1qc")]
+position = Vector2(16, -38)

@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://lxsb8bc6rkis"]
+
+[ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="1_cn61u"]
+[ext_resource type="Texture2D" uid="uid://bpricxfnogug" path="res://Images/Sprites/Enemies/Floofs.png" id="2_fl16a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_reusw"]
+shader = ExtResource("1_cn61u")
+shader_parameter/outline_color = Color(0.733333, 0.458824, 1, 1)
+shader_parameter/outline_size = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy3jj"]
+atlas = ExtResource("2_fl16a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys2ib"]
+atlas = ExtResource("2_fl16a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4mpa"]
+atlas = ExtResource("2_fl16a")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lq5ip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy3jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys2ib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4mpa")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn61u"]
+size = Vector2(2, 2)
+
+[node name="Floof" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_reusw")
+sprite_frames = SubResource("SpriteFrames_lq5ip")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.0811817
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cn61u")

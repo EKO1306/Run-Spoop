@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://7f8w6nhyqq1d"]
+
+[ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_ae6cu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fol8"]
+radius = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8fol8"]
+particle_flag_disable_z = true
+initial_velocity_min = -5.0
+initial_velocity_max = -5.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 0.999978
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_ae6cu"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_l6jsl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8s5x"]
+_data = {
+&"Dead": SubResource("Animation_ae6cu"),
+&"RESET": SubResource("Animation_l6jsl")
+}
+
+[node name="PlayerProjectileKick" type="Area2D"]
+script = ExtResource("1_ae6cu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8fol8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 128
+lifetime = 0.25
+process_material = SubResource("ParticleProcessMaterial_8fol8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o8s5x")
+}
