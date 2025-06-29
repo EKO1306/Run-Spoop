@@ -1,8 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://tfyuf421rpdw"]
+[gd_scene load_steps=32 format=3 uid="uid://tfyuf421rpdw"]
 
 [ext_resource type="Texture2D" uid="uid://c2fp5vkocnhnt" path="res://Images/Sprites/Player/Player.png" id="1_aoxlc"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="1_pie2b"]
 [ext_resource type="Script" uid="uid://otmarycs2rfy" path="res://Scripts/Player/player_movement.gd" id="1_qlfej"]
+[ext_resource type="Texture2D" uid="uid://due06x6kscqi4" path="res://Images/Sprites/Player/Revolver.png" id="4_sfp35"]
+[ext_resource type="AudioStream" uid="uid://dyy5x0yecbn36" path="res://Audio/SFX/Player/revolverFire.mp3" id="5_hv3sw"]
+[ext_resource type="AudioStream" uid="uid://dtxbo7g6ts64c" path="res://Audio/SFX/Player/playerHurt.mp3" id="5_r4ynj"]
+[ext_resource type="AudioStream" uid="uid://cvox8eip70h4u" path="res://Audio/SFX/Player/kickFire.mp3" id="7_0bouj"]
+[ext_resource type="AudioStream" uid="uid://d0k53v67vqxoc" path="res://Audio/SFX/Player/revolverClick.mp3" id="7_wmu34"]
+[ext_resource type="AudioStream" uid="uid://cl1sggm65it4y" path="res://Audio/SFX/Player/footstep.mp3" id="8_2hphp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pie2b"]
 shader = ExtResource("1_pie2b")
@@ -11,25 +17,42 @@ shader_parameter/outline_size = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pie2b"]
 atlas = ExtResource("1_aoxlc")
-region = Rect2(16, 16, 16, 16)
+region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfp35"]
 atlas = ExtResource("1_aoxlc")
-region = Rect2(0, 64, 48, 48)
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv3sw"]
 atlas = ExtResource("1_aoxlc")
-region = Rect2(32, 64, 48, 48)
+region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4ynj"]
 atlas = ExtResource("1_aoxlc")
-region = Rect2(64, 64, 48, 48)
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmu34"]
+atlas = ExtResource("1_aoxlc")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bouj"]
+atlas = ExtResource("1_aoxlc")
+region = Rect2(96, 48, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sfp35"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pie2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfp35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pie2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv3sw")
 }],
 "loop": true,
 "name": &"Idle",
@@ -37,16 +60,71 @@ animations = [{
 }, {
 "frames": [{
 "duration": 2.0,
-"texture": SubResource("AtlasTexture_sfp35")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hv3sw")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_r4ynj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmu34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bouj")
 }],
 "loop": false,
 "name": &"Primary",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hphp"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nrtn"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjyf3"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3gfx"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5p36"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5gn8"]
+atlas = ExtResource("4_sfp35")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3gfx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hphp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nrtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjyf3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3gfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5p36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5gn8")
+}],
+"loop": false,
+"name": &"Shoot",
 "speed": 10.0
 }]
 
@@ -64,6 +142,10 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pie2b"]
+radius = 4.0
+height = 16.0
+
 [sub_resource type="Animation" id="Animation_pie2b"]
 resource_name = "Idle"
 length = 2.0
@@ -71,7 +153,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/AnimatedSprite2D:scale")
+tracks/0/path = NodePath("Sprite/Player:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +168,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/AnimatedSprite2D:scale")
+tracks/0/path = NodePath("Sprite/Player:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,60 +184,36 @@ _data = {
 &"RESET": SubResource("Animation_sfp35")
 }
 
-[sub_resource type="Animation" id="Animation_wmu34"]
-resource_name = "AttackPrimary"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_0bouj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Primary"]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hphp"]
-_data = {
-&"AttackPrimary": SubResource("Animation_wmu34"),
-&"RESET": SubResource("Animation_0bouj")
-}
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qlfej")
 
 [node name="Sprite" type="CanvasGroup" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite"]
+[node name="Player" type="AnimatedSprite2D" parent="Sprite"]
 material = SubResource("ShaderMaterial_pie2b")
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_sfp35")
 animation = &"Primary"
 autoplay = "Idle"
+frame = 2
+frame_progress = 1.0
 offset = Vector2(0, -8)
 
+[node name="Revolver" type="AnimatedSprite2D" parent="Sprite"]
+material = SubResource("ShaderMaterial_pie2b")
+position = Vector2(2, -4)
+sprite_frames = SubResource("SpriteFrames_e3gfx")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.602623
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_grb8b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
+position_smoothing_enabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.61137, 0.673765, 0.856615, 1)
@@ -164,13 +222,43 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_qlfej")
 height = 4.0
 
+[node name="CollisionArea" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(-1, -6)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("CapsuleShape2D_pie2b")
+
 [node name="IdleAnim" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hv3sw")
 }
 autoplay = "Idle"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2hphp")
-}
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="PlayerHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_r4ynj")
+volume_db = 5.0
+pitch_scale = 0.75
+
+[node name="RevolverShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hv3sw")
+pitch_scale = 0.8
+
+[node name="KickShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0bouj")
+
+[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2hphp")
+volume_db = 5.0
+pitch_scale = 0.5
+
+[node name="RevolverClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_wmu34")
+pitch_scale = 0.8
+
+[connection signal="animation_finished" from="Sprite/Player" to="." method="_on_player_animation_finished"]
+[connection signal="animation_finished" from="Sprite/Revolver" to="." method="_on_revolver_animation_finished"]

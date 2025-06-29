@@ -1,0 +1,204 @@
+[gd_scene load_steps=24 format=3 uid="uid://ursda8hfke2l"]
+
+[ext_resource type="Script" uid="uid://camcpaubrqavl" path="res://Scripts/Projectiles/FlungEnemies/flungEnemyBase.gd" id="1_5ddji"]
+[ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_olwpr"]
+[ext_resource type="Texture2D" uid="uid://bpricxfnogug" path="res://Images/Sprites/Enemies/Floofs.png" id="2_q2ipg"]
+[ext_resource type="AudioStream" uid="uid://dks3c21v0vbtq" path="res://Audio/SFX/Enemies/enemyDustBurst.mp3" id="4_xbxpf"]
+
+[sub_resource type="Gradient" id="Gradient_olwpr"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_reusw"]
+gradient = SubResource("Gradient_olwpr")
+
+[sub_resource type="Curve" id="Curve_xbxpf"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0.00729927, 30.8943), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_reusw"]
+curve = SubResource("Curve_xbxpf")
+
+[sub_resource type="Curve" id="Curve_l14t0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.796748), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ys2ib"]
+curve = SubResource("Curve_l14t0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_61kwi"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 6.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_reusw")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_ys2ib")
+color = Color(0.258824, 0.239216, 0.239216, 1)
+color_ramp = SubResource("GradientTexture1D_reusw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_reusw"]
+shader = ExtResource("2_olwpr")
+shader_parameter/outline_color = Color(0.733333, 0.458824, 1, 1)
+shader_parameter/outline_size = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2ipg"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(0, 64, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olwpr"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(48, 64, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbxpf"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(96, 64, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl16a"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(0, 16, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reusw"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(48, 16, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq5ip"]
+atlas = ExtResource("2_q2ipg")
+region = Rect2(96, 16, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ddji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2ipg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olwpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbxpf")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl16a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reusw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq5ip")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ddji"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_q2ipg"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_olwpr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olwpr"]
+_data = {
+&"Dead": SubResource("Animation_q2ipg"),
+&"RESET": SubResource("Animation_olwpr")
+}
+
+[node name="FloofFlung" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_5ddji")
+damage = 50
+lifespan = 5.0
+heavyProjectile = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 16
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_61kwi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_reusw")
+sprite_frames = SubResource("SpriteFrames_5ddji")
+animation = &"Dead"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ddji")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_olwpr")
+}
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xbxpf")
+max_distance = 512.0

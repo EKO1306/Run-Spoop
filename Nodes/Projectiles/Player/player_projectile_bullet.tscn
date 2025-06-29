@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmv5btqckbj0i"]
+
+[ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_f5ens"]
+[ext_resource type="Script" uid="uid://cvdg70f2fl8cy" path="res://Scripts/Misc/Visual/lineTrail.gd" id="2_waq3p"]
+[ext_resource type="AudioStream" uid="uid://drbnfl50joloe" path="res://Audio/SFX/Player/bulletImpact.mp3" id="3_so87u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fol8"]
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_f5ens"]
+colors = PackedColorArray(0.898039, 0.803922, 0.301961, 0, 0.898039, 0.803922, 0.301961, 1)
+
+[sub_resource type="Animation" id="Animation_ae6cu"]
+resource_name = "Dead"
+
+[sub_resource type="Animation" id="Animation_l6jsl"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8s5x"]
+_data = {
+&"Dead": SubResource("Animation_ae6cu"),
+&"RESET": SubResource("Animation_l6jsl")
+}
+
+[node name="PlayerProjectileBullet" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_f5ens")
+damage = 80
+speed = 350
+lifespan = 2.0
+heavyProjectile = true
+soundOnDespawn = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8fol8")
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+z_index = 99
+width = 1.0
+gradient = SubResource("Gradient_f5ens")
+joint_mode = 2
+begin_cap_mode = 2
+script = ExtResource("2_waq3p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o8s5x")
+}
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_so87u")
+max_distance = 512.0

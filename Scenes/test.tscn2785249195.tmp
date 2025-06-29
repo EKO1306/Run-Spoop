@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dcpc0m8wnpq1q"]
+[gd_scene load_steps=19 format=4 uid="uid://dcpc0m8wnpq1q"]
 
 [ext_resource type="Texture2D" uid="uid://ddwu0vv0epdul" path="res://Images/Tiles/Sewer.png" id="1_lc1oi"]
 [ext_resource type="Texture2D" uid="uid://402toutt5sue" path="res://Images/Tiles/Sewer-Normal.png" id="2_8od7v"]
@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="4_ys1qc"]
 [ext_resource type="Texture2D" uid="uid://cix843on257mv" path="res://Images/UI/HUD/MomentumBar.png" id="5_35xla"]
 [ext_resource type="Script" uid="uid://vrhj5w5dav8b" path="res://Scripts/UI/HUD/momentum_bar.gd" id="6_i3aeo"]
-[ext_resource type="Texture2D" uid="uid://11uxek4iqea7" path="res://Images/UI/HUD/AmmoBar.png" id="7_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://dvcau0rr2xgl3" path="res://Nodes/Enemies/pielda.tscn" id="8_0c07c"]
-[ext_resource type="Script" uid="uid://dcsnnssqkytfb" path="res://Scripts/UI/HUD/ammo_bar.gd" id="8_iaow0"]
-[ext_resource type="PackedScene" uid="uid://41e2ncc826b1" path="res://Nodes/Enemies/roesling.tscn" id="11_qpfo2"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0c07c"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -30,7 +27,7 @@ texture = SubResource("CanvasTexture_lc1oi")
 1:0/0/z_index = 2
 1:0/0/terrain_set = 0
 1:0/0/terrain = 0
-1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0/terrains_peering_bit/right_side = 0
 1:0/0/terrains_peering_bit/bottom_right_corner = 0
 1:0/0/terrains_peering_bit/bottom_side = 0
@@ -38,7 +35,7 @@ texture = SubResource("CanvasTexture_lc1oi")
 2:0/0/z_index = 2
 2:0/0/terrain_set = 0
 2:0/0/terrain = 0
-2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0/terrains_peering_bit/right_side = 0
 2:0/0/terrains_peering_bit/bottom_right_corner = 0
 2:0/0/terrains_peering_bit/bottom_side = 0
@@ -48,7 +45,7 @@ texture = SubResource("CanvasTexture_lc1oi")
 3:0/0/z_index = 2
 3:0/0/terrain_set = 0
 3:0/0/terrain = 0
-3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0/terrains_peering_bit/bottom_side = 0
 3:0/0/terrains_peering_bit/bottom_left_corner = 0
 3:0/0/terrains_peering_bit/left_side = 0
@@ -141,14 +138,14 @@ texture = SubResource("CanvasTexture_lc1oi")
 1:2/0 = 0
 1:2/0/terrain_set = 0
 1:2/0/terrain = 0
-1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0/terrains_peering_bit/right_side = 0
 1:2/0/terrains_peering_bit/top_side = 0
 1:2/0/terrains_peering_bit/top_right_corner = 0
 2:2/0 = 0
 2:2/0/terrain_set = 0
 2:2/0/terrain = 0
-2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0/terrains_peering_bit/right_side = 0
 2:2/0/terrains_peering_bit/left_side = 0
 2:2/0/terrains_peering_bit/top_left_corner = 0
@@ -157,7 +154,7 @@ texture = SubResource("CanvasTexture_lc1oi")
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/terrain = 0
-3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0/terrains_peering_bit/left_side = 0
 3:2/0/terrains_peering_bit/top_left_corner = 0
 3:2/0/terrains_peering_bit/top_side = 0
@@ -322,18 +319,6 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.529412, 0, 1, 1, 0.843137, 0.184314, 
 atlas = ExtResource("5_35xla")
 region = Rect2(40, 0, 40, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iaow0"]
-atlas = ExtResource("7_2cgwh")
-region = Rect2(0, 32, 160, 35)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qpfo2"]
-atlas = ExtResource("7_2cgwh")
-region = Rect2(160, 34, 16, 33)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yb21e"]
-atlas = ExtResource("7_2cgwh")
-region = Rect2(160, 0, 15, 33)
-
 [node name="Test" type="Node2D"]
 y_sort_enabled = true
 
@@ -350,9 +335,8 @@ curve = SubResource("Curve2D_i3aeo")
 position = Vector2(-250, -82)
 rotation = 0.00326796
 scale = Vector2(2.75, 2.81708)
-rotates = false
 script = ExtResource("3_5wyu1")
-speed = 0
+speed = 75
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/Monster"]
 z_index = 69
@@ -406,72 +390,6 @@ allow_greater = true
 allow_lesser = true
 fill_mode = 3
 texture_progress = SubResource("AtlasTexture_i3aeo")
-
-[node name="AmmoBarUI" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -160.0
-offset_right = 160.0
-offset_bottom = -120.0
-grow_vertical = 0
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_iaow0")
-script = ExtResource("8_iaow0")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AmmoBarUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -1.75
-offset_right = 2.0
-offset_bottom = -1.75
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BulletBG" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_qpfo2")
-
-[node name="Bullet" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer/BulletBG"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_yb21e")
-
-[node name="BulletBG2" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_qpfo2")
-
-[node name="Bullet" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer/BulletBG2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_yb21e")
-
-[node name="BulletBG3" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_qpfo2")
-
-[node name="Bullet" type="TextureRect" parent="CanvasLayer/AmmoBarUI/HBoxContainer/BulletBG3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_yb21e")
 
 [node name="Floof" parent="." instance=ExtResource("4_ys1qc")]
 position = Vector2(93, -95)
@@ -564,14 +482,14 @@ position = Vector2(122, -284)
 [node name="Pielda5" parent="." instance=ExtResource("8_0c07c")]
 position = Vector2(122, -317)
 
+[node name="Pielda6" parent="." instance=ExtResource("8_0c07c")]
+position = Vector2(122, -299)
+
 [node name="Floof24" parent="." instance=ExtResource("4_ys1qc")]
 position = Vector2(206, -320)
 
 [node name="Floof25" parent="." instance=ExtResource("4_ys1qc")]
-position = Vector2(176, -292)
+position = Vector2(175, -294)
 
 [node name="Floof26" parent="." instance=ExtResource("4_ys1qc")]
 position = Vector2(236, -285)
-
-[node name="Roesling" parent="." instance=ExtResource("11_qpfo2")]
-position = Vector2(247, -94)

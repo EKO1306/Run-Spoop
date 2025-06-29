@@ -1,17 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://7f8w6nhyqq1d"]
+[gd_scene load_steps=10 format=3 uid="uid://7f8w6nhyqq1d"]
 
 [ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_ae6cu"]
+[ext_resource type="AudioStream" uid="uid://df0vvj3tmmscx" path="res://Audio/SFX/Player/kickImpact.mp3" id="2_l6jsl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8fol8"]
-radius = 2.0
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_ae6cu"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l6jsl"]
+gradient = SubResource("Gradient_ae6cu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8fol8"]
 particle_flag_disable_z = true
-initial_velocity_min = -5.0
-initial_velocity_max = -5.0
-radial_velocity_min = 0.999978
-radial_velocity_max = 0.999978
+emission_shape = 1
+emission_sphere_radius = 4.0
+initial_velocity_min = -1.0
+initial_velocity_max = -1.0
+radial_velocity_min = 2.99998
+radial_velocity_max = 4.99998
 gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_l6jsl")
 
 [sub_resource type="Animation" id="Animation_ae6cu"]
 resource_name = "Dead"
@@ -50,17 +60,28 @@ _data = {
 }
 
 [node name="PlayerProjectileKick" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
 script = ExtResource("1_ae6cu")
+damage = 25
+lifespan = 0.1
+soundOnDespawn = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8fol8")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 128
-lifetime = 0.25
+lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_8fol8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_o8s5x")
 }
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_l6jsl")
+volume_db = -5.0
+pitch_scale = 1.5
+max_distance = 512.0
