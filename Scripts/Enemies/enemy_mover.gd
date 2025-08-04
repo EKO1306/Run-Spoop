@@ -29,4 +29,4 @@ func postPhysics(delta):
 		navAgentUpdateTimer = 0
 
 func canMove():
-	pass
+	return true

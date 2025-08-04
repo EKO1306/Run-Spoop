@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ursda8hfke2l"]
+[gd_scene load_steps=24 format=3 uid="uid://b51gxqejh5pyq"]
 
-[ext_resource type="Script" uid="uid://camcpaubrqavl" path="res://Scripts/Projectiles/FlungEnemies/flungEnemyBase.gd" id="1_5ddji"]
-[ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_olwpr"]
-[ext_resource type="Texture2D" uid="uid://bpricxfnogug" path="res://Images/Sprites/Enemies/Floofs.png" id="2_q2ipg"]
-[ext_resource type="AudioStream" uid="uid://dks3c21v0vbtq" path="res://Audio/SFX/Enemies/enemyDustBurst.mp3" id="4_xbxpf"]
+[ext_resource type="Script" uid="uid://camcpaubrqavl" path="res://Scripts/Projectiles/FlungEnemies/flungEnemyBase.gd" id="1_44jdc"]
+[ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_8leww"]
+[ext_resource type="Texture2D" uid="uid://cfk5w0yivpffk" path="res://Images/Sprites/Enemies/Roesling.png" id="3_44jdc"]
+[ext_resource type="AudioStream" uid="uid://dks3c21v0vbtq" path="res://Audio/SFX/Enemies/enemyDustBurst.mp3" id="5_1riiv"]
 
 [sub_resource type="Gradient" id="Gradient_olwpr"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -45,46 +45,46 @@ scale_curve = SubResource("CurveTexture_ys2ib")
 color = Color(0.258824, 0.239216, 0.239216, 1)
 color_ramp = SubResource("GradientTexture1D_reusw")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_reusw"]
-shader = ExtResource("2_olwpr")
-shader_parameter/outline_color = Color(0.733333, 0.458824, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23o7l"]
+shader = ExtResource("2_8leww")
+shader_parameter/outline_color = Color(0.266667, 0.517647, 1, 1)
 shader_parameter/outline_size = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2ipg"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(0, 64, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8leww"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(0, 192, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_olwpr"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(48, 64, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4sa7"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(48, 192, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbxpf"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(96, 64, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qybgv"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(96, 192, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fl16a"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(0, 16, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8iet"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(0, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_reusw"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(48, 16, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_44jdc"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(48, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lq5ip"]
-atlas = ExtResource("2_q2ipg")
-region = Rect2(96, 16, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1riiv"]
+atlas = ExtResource("3_44jdc")
+region = Rect2(96, 48, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5ddji"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_1riiv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2ipg")
+"texture": SubResource("AtlasTexture_8leww")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_olwpr")
+"texture": SubResource("AtlasTexture_p4sa7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xbxpf")
+"texture": SubResource("AtlasTexture_qybgv")
 }, {
 "duration": 1.0,
 "texture": null
@@ -95,13 +95,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fl16a")
+"texture": SubResource("AtlasTexture_y8iet")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_44jdc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_reusw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lq5ip")
+"texture": SubResource("AtlasTexture_1riiv")
 }],
 "loop": true,
 "name": &"Idle",
@@ -171,10 +171,10 @@ _data = {
 &"RESET": SubResource("Animation_olwpr")
 }
 
-[node name="FloofFlung" type="Area2D" groups=["Projectile"]]
+[node name="RoeslingFlung" type="Area2D" groups=["Projectile"]]
 collision_layer = 32
 collision_mask = 48
-script = ExtResource("1_5ddji")
+script = ExtResource("1_44jdc")
 attackDamage = 50
 isPlayerAttack = true
 lifespan = 5.0
@@ -187,8 +187,8 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_61kwi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_reusw")
-sprite_frames = SubResource("SpriteFrames_5ddji")
+material = SubResource("ShaderMaterial_23o7l")
+sprite_frames = SubResource("SpriteFrames_1riiv")
 animation = &"Dead"
 autoplay = "Idle"
 
@@ -201,5 +201,5 @@ libraries = {
 }
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_xbxpf")
+stream = ExtResource("5_1riiv")
 max_distance = 512.0

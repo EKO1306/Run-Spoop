@@ -32,7 +32,7 @@ func onHit(damage, projectile = null, playerProjectile = false):
 	if projectile != null:
 		velocity += (global_position.direction_to(projectile.global_position) * -knockbackValue) / get_physics_process_delta_time()
 	if statHealth <= 0:
-		onDeath(projectile,playerProjectile)
+		onDeath(projectile)
 	return true
 
 func prePhysics(delta):

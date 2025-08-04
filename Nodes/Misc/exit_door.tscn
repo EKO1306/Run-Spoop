@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy542nc01dgaj"]
+
+[ext_resource type="Script" uid="uid://d4edsf1rrx4pf" path="res://Scripts/Misc/exit_door.gd" id="1_3pnci"]
+[ext_resource type="Texture2D" uid="uid://bfa1coxmdv5id" path="res://Images/Tiles/Sprites/Exit-Door.png" id="1_ciiux"]
+[ext_resource type="Texture2D" uid="uid://bqt7lvfu48ioh" path="res://Images/Tiles/Sprites/Exit-Door-Normal.png" id="2_nk7ic"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3pnci"]
+diffuse_texture = ExtResource("1_ciiux")
+normal_texture = ExtResource("2_nk7ic")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciiux"]
+size = Vector2(30, 10)
+
+[node name="ExitDoor" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3pnci")
+
+[node name="Exit-door" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_3pnci")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ciiux")

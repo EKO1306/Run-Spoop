@@ -1,7 +1,13 @@
 extends Area2D
 
-@export var damage : int
-@export var speed = 200
+@export_category("Player Attack Stats")
+@export var attackDamage : int
+@export var playerAttackSpeed = 200
+@export_category("Enemy Attack Stats")
+@export var isPlayerAttack = false
+@export var momentumDamage : int
+@export var enemyAttackSpeed = 200
+@export_category("Misc Attack Stats")
 @export var lifespan = 0.2
 @export var deleteTimer = 1
 @export var heavyProjectile = false
@@ -23,11 +29,21 @@ func _physics_process(delta: float) -> void:
 	if alive:
 		if remainingLifespan <= 0:
 			projectileDeath(true)
+			return
+		if isPlayerAttack:
+			set_collision_mask_value(2,false)
+			set_collision_mask_value(5,true)
+		else:
+			set_collision_mask_value(2,true)
+			set_collision_mask_value(5,false)
 	if not alive:
 		if remainingLifespan <= -deleteTimer:
 			queue_free()
 		return
-	velocity = direction * speed
+	if isPlayerAttack:
+		velocity = direction * playerAttackSpeed
+	else:
+		velocity = direction * enemyAttackSpeed
 	position += velocity * delta
 	for node in get_overlapping_areas():
 		if onCollision(node):
@@ -37,15 +53,34 @@ func _physics_process(delta: float) -> void:
 			break
 
 func onCollision(node):
-	if node.is_in_group("EnemyCollider"):
-		enemyColliion(node.get_parent())
-		return true
+	if isPlayerAttack:
+		if node.is_in_group("EnemyCollider"):
+			enemyColliion(node.get_parent())
+			return true
+	else:
+		if node.is_in_group("Player"):
+			playerColliion(node.get_parent())
+			return true
+	if node.is_in_group("Projectile"):
+		if not heavyProjectile:
+			if isPlayerAttack:
+				if not node.isPlayerAttack:
+					if not node.heavyProjectile:
+						node.isPlayerAttack = true
+						node.direction = direction
+						node.heavyProjectile = true
+						projectileDeath(false)
+						return true
 	if node.is_in_group("Terrain"):
 		projectileDeath(false)
 		return true
 
+func playerColliion(playerNode):
+	if playerNode.onHit(momentumDamage,self):
+		projectileDeath(false, true)
+
 func enemyColliion(enemyNode):
-	if enemyNode.onHit(damage,self,true):
+	if enemyNode.onHit(attackDamage,self):
 		projectileDeath(false, true)
 
 func projectileDeath(despawn, hitEnemy = false):

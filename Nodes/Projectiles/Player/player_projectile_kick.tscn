@@ -59,11 +59,12 @@ _data = {
 &"RESET": SubResource("Animation_l6jsl")
 }
 
-[node name="PlayerProjectileKick" type="Area2D"]
-collision_layer = 0
-collision_mask = 16
+[node name="PlayerProjectileKick" type="Area2D" groups=["Projectile"]]
+collision_layer = 32
+collision_mask = 48
 script = ExtResource("1_ae6cu")
-damage = 25
+attackDamage = 25
+isPlayerAttack = true
 lifespan = 0.1
 soundOnDespawn = false
 

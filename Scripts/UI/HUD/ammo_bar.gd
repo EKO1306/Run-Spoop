@@ -1,6 +1,6 @@
 extends TextureRect
 
-@onready var nodePlayer = get_tree().get_current_scene().get_node("Player")
+@onready var nodePlayer = get_tree().get_current_scene().main.get_node("Player")
 
 func _process(delta: float) -> void:
 	var playerRemainingAmmo = nodePlayer.primaryUsesRemaining

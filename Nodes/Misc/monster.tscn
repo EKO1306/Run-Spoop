@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://r2mupw21fwny"]
+
+[ext_resource type="Script" uid="uid://trowjkp0ew2e" path="res://Scripts/Enemies/monster.gd" id="1_8uxgj"]
+[ext_resource type="AudioStream" uid="uid://bpp3632kq6ugs" path="res://Audio/SFX/Enemies/monsterIdle.mp3" id="2_5qh6w"]
+
+[sub_resource type="Gradient" id="Gradient_yb21e"]
+offsets = PackedFloat32Array(0.75, 0.8, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.290196, 0.215686, 0.423529, 0.694118, 0.264461, 0.168505, 0.400367, 0.54228, 0.172549, 0, 0.317647, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aees8"]
+gradient = SubResource("Gradient_yb21e")
+width = 256
+height = 32
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yb21e"]
+normal = Vector2(1, 0)
+
+[node name="Monster" type="Path2D"]
+script = ExtResource("1_8uxgj")
+distanceSpeedMultiplier = 2.0
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+
+[node name="Monster" type="Area2D" parent="PathFollow2D"]
+collision_layer = 18
+collision_mask = 18
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Monster"]
+z_index = 69
+scale = Vector2(1, 400)
+texture = SubResource("GradientTexture2D_aees8")
+offset = Vector2(-64, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Monster"]
+shape = SubResource("WorldBoundaryShape2D_yb21e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5qh6w")
+autoplay = true
+parameters/looping = true

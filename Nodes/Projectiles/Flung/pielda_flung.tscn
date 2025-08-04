@@ -165,11 +165,12 @@ _data = {
 &"RESET": SubResource("Animation_olwpr")
 }
 
-[node name="PieldaFlung" type="Area2D"]
-collision_layer = 0
-collision_mask = 16
+[node name="PieldaFlung" type="Area2D" groups=["Projectile"]]
+collision_layer = 32
+collision_mask = 48
 script = ExtResource("1_7d1ak")
-damage = 50
+attackDamage = 50
+isPlayerAttack = true
 lifespan = 5.0
 heavyProjectile = true
 

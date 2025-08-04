@@ -2,7 +2,7 @@ extends TextureRect
 
 @export var progressGradient : Gradient
 
-@onready var nodePlayer = get_tree().get_current_scene().get_node("Player")
+@onready var nodePlayer = get_parent().get_parent()
 @onready var nodeMomentumChange = $MomentumChange
 @onready var nodeMomentumPrimary = $MomentumBarPrimary
 

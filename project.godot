@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RunSpoop"
-run/main_scene="uid://dcpc0m8wnpq1q"
+run/main_scene="uid://pplgf28d2spi"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,7 @@ window/stretch/mode="viewport"
 
 EnemyCollider="The collider of an enemy."
 Terrain=""
+Projectile=""
 
 [input]
 

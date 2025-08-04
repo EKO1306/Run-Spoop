@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cf40wdkqw5go3" path="res://Scripts/Enemies/enemy_thrower.gd" id="1_5qpri"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_000hw"]
 [ext_resource type="Texture2D" uid="uid://cfk5w0yivpffk" path="res://Images/Sprites/Enemies/Roesling.png" id="4_000hw"]
-[ext_resource type="AudioStream" uid="uid://bygu7o2mnseiv" path="res://Audio/SFX/Enemies/enemyDustImpact.mp3" id="4_1hrej"]
+[ext_resource type="AudioStream" uid="uid://bf3m43ku2uakh" path="res://Audio/SFX/Enemies/leafImpact.mp3" id="4_5qpri"]
 
 [sub_resource type="Gradient" id="Gradient_fl16a"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -86,6 +86,18 @@ region = Rect2(48, 0, 48, 48)
 atlas = ExtResource("4_000hw")
 region = Rect2(96, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gpl2"]
+atlas = ExtResource("4_000hw")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gdn5"]
+atlas = ExtResource("4_000hw")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqqmm"]
+atlas = ExtResource("4_000hw")
+region = Rect2(96, 144, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wnxfs"]
 atlas = ExtResource("4_000hw")
 region = Rect2(48, 96, 48, 48)
@@ -93,18 +105,6 @@ region = Rect2(48, 96, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_argf4"]
 atlas = ExtResource("4_000hw")
 region = Rect2(0, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yqqmm"]
-atlas = ExtResource("4_000hw")
-region = Rect2(96, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6gdn5"]
-atlas = ExtResource("4_000hw")
-region = Rect2(48, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2gpl2"]
-atlas = ExtResource("4_000hw")
-region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nxslx"]
 animations = [{
@@ -151,6 +151,15 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gpl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gdn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqqmm")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wnxfs")
 }, {
@@ -237,13 +246,15 @@ _data = {
 &"RESET": SubResource("Animation_iy3jj")
 }
 
-[node name="Roesling" type="CharacterBody2D"]
+[node name="Roesling" type="CharacterBody2D" groups=["EnemyCollider"]]
 motion_mode = 1
 script = ExtResource("1_5qpri")
-maxHealth = 100
+rangedAttackAnimDelay = 0.4
+hitRangedAttackDelay = 0.3
+maxHealth = 40
 contactDamage = 30.0
 deathMomentum = 30
-deathFlungEnemy = "floof_flung"
+deathFlungEnemy = "roesling_flung"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = -1
@@ -254,10 +265,8 @@ process_material = SubResource("ParticleProcessMaterial_fl16a")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_23o7l")
 sprite_frames = SubResource("SpriteFrames_nxslx")
-animation = &"Throw"
+animation = &"Hurt"
 autoplay = "Idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_reusw")
@@ -270,7 +279,8 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_fl16a")
 
 [node name="SoundHurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_1hrej")
+stream = ExtResource("4_5qpri")
+pitch_scale = 0.75
 max_distance = 512.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 				var kickProjectile = preload("res://Nodes/Projectiles/Player/player_projectile_kick.tscn").instantiate()
 				kickProjectile.global_position = global_position + global_position.direction_to(mousePos) * 24
 				kickProjectile.direction = global_position.direction_to(mousePos)
-				get_tree().get_current_scene().add_child(kickProjectile)
+				get_tree().get_current_scene().main.add_child(kickProjectile)
 	
 	move_and_slide()
 

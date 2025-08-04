@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pplgf28d2spi"]
+
+[ext_resource type="Script" uid="uid://bjkh7n08mmv1u" path="res://Scripts/Misc/scene_manager.gd" id="1_mk1ro"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_mk1ro")
+defaultScene = "res://Scenes/Levels/level_1_2.tscn"

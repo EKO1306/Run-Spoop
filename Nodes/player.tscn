@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://tfyuf421rpdw"]
+[gd_scene load_steps=42 format=3 uid="uid://tfyuf421rpdw"]
 
 [ext_resource type="Texture2D" uid="uid://c2fp5vkocnhnt" path="res://Images/Sprites/Player/Player.png" id="1_aoxlc"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="1_pie2b"]
@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://cvox8eip70h4u" path="res://Audio/SFX/Player/kickFire.mp3" id="7_0bouj"]
 [ext_resource type="AudioStream" uid="uid://d0k53v67vqxoc" path="res://Audio/SFX/Player/revolverClick.mp3" id="7_wmu34"]
 [ext_resource type="AudioStream" uid="uid://cl1sggm65it4y" path="res://Audio/SFX/Player/footstep.mp3" id="8_2hphp"]
+[ext_resource type="Texture2D" uid="uid://cix843on257mv" path="res://Images/UI/HUD/MomentumBar.png" id="10_6nrtn"]
+[ext_resource type="Script" uid="uid://vrhj5w5dav8b" path="res://Scripts/UI/HUD/momentum_bar.gd" id="11_hjyf3"]
+[ext_resource type="Texture2D" uid="uid://11uxek4iqea7" path="res://Images/UI/HUD/AmmoBar.png" id="12_8euyb"]
+[ext_resource type="Script" uid="uid://dcsnnssqkytfb" path="res://Scripts/UI/HUD/ammo_bar.gd" id="13_axrd7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pie2b"]
 shader = ExtResource("1_pie2b")
@@ -128,8 +132,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_grb8b"]
-size = Vector2(4, 4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nrtn"]
+radius = 3.0
 
 [sub_resource type="Gradient" id="Gradient_qc4db"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -184,7 +188,32 @@ _data = {
 &"RESET": SubResource("Animation_sfp35")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wha1n"]
+atlas = ExtResource("10_6nrtn")
+region = Rect2(0, 0, 40, 180)
+
+[sub_resource type="Gradient" id="Gradient_ewvgn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.197531, 0.404321, 0.688272, 0.91358)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.529412, 0, 1, 1, 0.843137, 0.184314, 1, 0, 1, 0, 1, 0.360784, 1, 0.796078, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3522b"]
+atlas = ExtResource("10_6nrtn")
+region = Rect2(40, 0, 40, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3lat"]
+atlas = ExtResource("12_8euyb")
+region = Rect2(0, 32, 160, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4dl4"]
+atlas = ExtResource("12_8euyb")
+region = Rect2(160, 34, 16, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynwet"]
+atlas = ExtResource("12_8euyb")
+region = Rect2(160, 0, 15, 33)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_qlfej")
 
 [node name="Sprite" type="CanvasGroup" parent="."]
@@ -193,10 +222,8 @@ script = ExtResource("1_qlfej")
 material = SubResource("ShaderMaterial_pie2b")
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_sfp35")
-animation = &"Primary"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 2
-frame_progress = 1.0
 offset = Vector2(0, -8)
 
 [node name="Revolver" type="AnimatedSprite2D" parent="Sprite"]
@@ -208,8 +235,8 @@ autoplay = "Idle"
 frame_progress = 0.602623
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_grb8b")
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_6nrtn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
@@ -223,7 +250,7 @@ texture = SubResource("GradientTexture2D_qlfej")
 height = 4.0
 
 [node name="CollisionArea" type="Area2D" parent="." groups=["Player"]]
-position = Vector2(-1, -6)
+position = Vector2(0, -6)
 collision_layer = 2
 collision_mask = 0
 
@@ -259,6 +286,110 @@ pitch_scale = 0.5
 [node name="RevolverClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_wmu34")
 pitch_scale = 0.8
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MomentumBarUI" type="TextureRect" parent="UI"]
+offset_left = 1728.0
+offset_top = 180.0
+offset_right = 1768.0
+offset_bottom = 360.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_wha1n")
+script = ExtResource("11_hjyf3")
+progressGradient = SubResource("Gradient_ewvgn")
+
+[node name="MomentumChange" type="TextureProgressBar" parent="UI/MomentumBarUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+value = 77.0
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_3522b")
+
+[node name="MomentumBarPrimary" type="TextureProgressBar" parent="UI/MomentumBarUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+value = 50.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 3
+texture_progress = SubResource("AtlasTexture_3522b")
+
+[node name="AmmoBarUI" type="TextureRect" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = -120.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_o3lat")
+script = ExtResource("13_axrd7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/AmmoBarUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -1.75
+offset_right = 2.0
+offset_bottom = -1.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BulletBG" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u4dl4")
+
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ynwet")
+
+[node name="BulletBG2" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u4dl4")
+
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ynwet")
+
+[node name="BulletBG3" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_u4dl4")
+
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ynwet")
 
 [connection signal="animation_finished" from="Sprite/Player" to="." method="_on_player_animation_finished"]
 [connection signal="animation_finished" from="Sprite/Revolver" to="." method="_on_revolver_animation_finished"]

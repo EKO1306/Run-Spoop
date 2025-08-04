@@ -22,12 +22,13 @@ _data = {
 &"RESET": SubResource("Animation_l6jsl")
 }
 
-[node name="PlayerProjectileBullet" type="Area2D"]
-collision_layer = 0
-collision_mask = 16
+[node name="PlayerProjectileBullet" type="Area2D" groups=["Projectile"]]
+collision_layer = 32
+collision_mask = 48
 script = ExtResource("1_f5ens")
-damage = 80
-speed = 350
+attackDamage = 80
+playerAttackSpeed = 350
+isPlayerAttack = true
 lifespan = 2.0
 heavyProjectile = true
 soundOnDespawn = false
