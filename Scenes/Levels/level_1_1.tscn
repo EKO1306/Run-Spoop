@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://b0cpdmr7gwsla"]
+[gd_scene load_steps=8 format=4 uid="uid://b0cpdmr7gwsla"]
 
 [ext_resource type="PackedScene" uid="uid://b7h25i20p6uku" path="res://Nodes/Misc/tile_map_layer.tscn" id="1_i0g8q"]
 [ext_resource type="PackedScene" uid="uid://tfyuf421rpdw" path="res://Nodes/player.tscn" id="2_ffuqj"]
 [ext_resource type="PackedScene" uid="uid://r2mupw21fwny" path="res://Nodes/Misc/monster.tscn" id="3_754lc"]
 [ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="4_lkwid"]
 [ext_resource type="PackedScene" uid="uid://dvcau0rr2xgl3" path="res://Nodes/Enemies/pielda.tscn" id="5_x5idj"]
-[ext_resource type="PackedScene" uid="uid://bvar2hmm8qmk4" path="res://Nodes/Enemies/devarian.tscn" id="6_m8wp0"]
 [ext_resource type="PackedScene" uid="uid://cy542nc01dgaj" path="res://Nodes/Misc/exit_door.tscn" id="7_2vri1"]
 
 [sub_resource type="Curve2D" id="Curve2D_lkwid"]
@@ -101,11 +100,6 @@ position = Vector2(411, -490)
 
 [node name="Floof24" parent="." instance=ExtResource("4_lkwid")]
 position = Vector2(456, -510)
-
-[node name="Devarian" parent="." instance=ExtResource("6_m8wp0")]
-position = Vector2(77, -34)
-activationDistance = 64.0
-deactivationDistance = 128.0
 
 [node name="ExitDoor" parent="." instance=ExtResource("7_2vri1")]
 position = Vector2(432, -544)
