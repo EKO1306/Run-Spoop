@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddwu0vv0epdul"
-path="res://.godot/imported/Sewer.png-7b48c90fbd756ae2ebdb6c3978eca5cd.ctex"
+uid="uid://bk3ya516f1c8f"
+path="res://.godot/imported/Pirhaan.png-3904103b9bf68ba45889953cd3e9b442.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Tiles/Sewer.png"
-dest_files=["res://.godot/imported/Sewer.png-7b48c90fbd756ae2ebdb6c3978eca5cd.ctex"]
+source_file="res://Images/Sprites/Enemies/Pirhaan.png"
+dest_files=["res://.godot/imported/Pirhaan.png-3904103b9bf68ba45889953cd3e9b442.ctex"]
 
 [params]
 

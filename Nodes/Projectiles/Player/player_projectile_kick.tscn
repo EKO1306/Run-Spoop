@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://7f8w6nhyqq1d"]
+[gd_scene format=3 uid="uid://7f8w6nhyqq1d"]
 
-[ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_ae6cu"]
+[ext_resource type="Script" uid="uid://dx226b78yxn1h" path="res://Scripts/Projectiles/Player/projectileKick.gd" id="1_l6jsl"]
 [ext_resource type="AudioStream" uid="uid://df0vvj3tmmscx" path="res://Audio/SFX/Player/kickImpact.mp3" id="2_l6jsl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8fol8"]
-radius = 4.0
+radius = 6.0
 
 [sub_resource type="Gradient" id="Gradient_ae6cu"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -59,29 +59,27 @@ _data = {
 &"RESET": SubResource("Animation_l6jsl")
 }
 
-[node name="PlayerProjectileKick" type="Area2D" groups=["Projectile"]]
+[node name="PlayerProjectileKick" type="Area2D" unique_id=1349320142 groups=["Projectile"]]
 collision_layer = 32
 collision_mask = 48
-script = ExtResource("1_ae6cu")
+script = ExtResource("1_l6jsl")
 attackDamage = 25
 isPlayerAttack = true
 lifespan = 0.1
 soundOnDespawn = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1837413696]
 shape = SubResource("CircleShape2D_8fol8")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1417277229]
 amount = 128
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_8fol8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o8s5x")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=496907340]
+libraries/ = SubResource("AnimationLibrary_o8s5x")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1313634834]
 stream = ExtResource("2_l6jsl")
 volume_db = -5.0
 pitch_scale = 1.5

@@ -65,7 +65,6 @@ func _physics_process(delta: float) -> void:
 	
 	velocity *= 0.7
 	if canAction:
-		pass
 		if Input.is_action_just_pressed("attackPrimary"):
 			if primaryUsesRemaining > 0:
 				primaryUsesRemaining -= 1

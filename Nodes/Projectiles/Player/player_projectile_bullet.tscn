@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmv5btqckbj0i"]
+[gd_scene format=3 uid="uid://cmv5btqckbj0i"]
 
 [ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_f5ens"]
 [ext_resource type="Script" uid="uid://cvdg70f2fl8cy" path="res://Scripts/Misc/Visual/lineTrail.gd" id="2_waq3p"]
@@ -22,7 +22,7 @@ _data = {
 &"RESET": SubResource("Animation_l6jsl")
 }
 
-[node name="PlayerProjectileBullet" type="Area2D" groups=["Projectile"]]
+[node name="PlayerProjectileBullet" type="Area2D" unique_id=2067273086 groups=["Projectile"]]
 collision_layer = 32
 collision_mask = 48
 script = ExtResource("1_f5ens")
@@ -33,10 +33,10 @@ lifespan = 2.0
 heavyProjectile = true
 soundOnDespawn = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=169505891]
 shape = SubResource("CircleShape2D_8fol8")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1077020154]
 top_level = true
 z_index = 99
 width = 1.0
@@ -45,11 +45,9 @@ joint_mode = 2
 begin_cap_mode = 2
 script = ExtResource("2_waq3p")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o8s5x")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=88602595]
+libraries/ = SubResource("AnimationLibrary_o8s5x")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=823589218]
 stream = ExtResource("3_so87u")
 max_distance = 512.0

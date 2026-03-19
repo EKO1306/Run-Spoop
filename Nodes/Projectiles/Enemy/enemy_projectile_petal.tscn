@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clvlpps0qjaem"]
+[gd_scene format=3 uid="uid://clvlpps0qjaem"]
 
 [ext_resource type="Script" uid="uid://dds2wf3baqlc7" path="res://Scripts/Projectiles/Player/projectlePlayerBase.gd" id="1_ms7xe"]
 [ext_resource type="AudioStream" uid="uid://bf3m43ku2uakh" path="res://Audio/SFX/Enemies/leafImpact.mp3" id="2_gnqg0"]
@@ -107,20 +107,21 @@ _data = {
 &"RESET": SubResource("Animation_l6jsl")
 }
 
-[node name="EnemyProjectilePetal" type="Area2D" groups=["Projectile"]]
+[node name="EnemyProjectilePetal" type="Area2D" unique_id=695287958 groups=["Projectile"]]
 collision_layer = 32
 collision_mask = 34
 script = ExtResource("1_ms7xe")
 attackDamage = 40
+playerAttackSpeed = 350
 momentumDamage = 15
 enemyAttackSpeed = 100
 lifespan = 5.0
 soundOnDespawn = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=266956320]
 shape = SubResource("CircleShape2D_8fol8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectile"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1900226604 groups=["Projectile"]]
 material = SubResource("ShaderMaterial_bymf8")
 sprite_frames = SubResource("SpriteFrames_bymf8")
 animation = &"Dead"
@@ -128,11 +129,9 @@ autoplay = "Idle"
 frame = 2
 frame_progress = 0.860478
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o8s5x")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=182372326]
+libraries/ = SubResource("AnimationLibrary_o8s5x")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=72892405]
 stream = ExtResource("2_gnqg0")
 max_distance = 512.0

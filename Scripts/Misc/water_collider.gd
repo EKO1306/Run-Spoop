@@ -8,4 +8,5 @@ func _physics_process(delta: float) -> void:
 		if node.is_in_group("Player"):
 			node.velocity += pushDirection * pushSpeed * delta * 5
 		if node.is_in_group("EnemyCollider"):
-			node.velocity += pushDirection * pushSpeed * delta * node.knockbackValue
+			if not node.is_in_group("NotWaterPushable"):
+				node.velocity += pushDirection * pushSpeed * delta * node.knockbackValue

@@ -1,19 +1,22 @@
 extends Area2D
 
 @export_category("Player Attack Stats")
+## How much damage this projectile does to enemies, as long as it is a player projectile.
 @export var attackDamage : int
-@export var playerAttackSpeed = 200
+## How fast the projectile moves, as long as it is a player projectile.
+@export var playerAttackSpeed := 200
 @export_category("Enemy Attack Stats")
-@export var isPlayerAttack = false
+## If true, the projectile will hit enemies, and use Player Attack Stats. If false, the projectile will hit players, and use Enemy Attack Stats.
+@export var isPlayerAttack := false
 @export var momentumDamage : int
-@export var enemyAttackSpeed = 200
+@export var enemyAttackSpeed := 200
 @export_category("Misc Attack Stats")
-@export var lifespan = 0.2
-@export var deleteTimer = 1
-@export var heavyProjectile = false
-@export var soundOnDespawn = true
+@export var lifespan := 0.2
+@export var deleteTimer := 1
+@export var heavyProjectile := false
+@export var soundOnDespawn := true
 var remainingLifespan
-var alive = true
+var alive := true
 
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO

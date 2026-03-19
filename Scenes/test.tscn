@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dcpc0m8wnpq1q"]
+[gd_scene format=4 uid="uid://dcpc0m8wnpq1q"]
 
-[ext_resource type="PackedScene" uid="uid://b7h25i20p6uku" path="res://Nodes/Misc/tile_map_layer.tscn" id="1_qpfo2"]
+[ext_resource type="PackedScene" uid="uid://b7h25i20p6uku" path="res://Nodes/Misc/terrain_tile_layer.tscn" id="1_qpfo2"]
 [ext_resource type="PackedScene" uid="uid://r2mupw21fwny" path="res://Nodes/Misc/monster.tscn" id="3_i3aeo"]
 [ext_resource type="PackedScene" uid="uid://tfyuf421rpdw" path="res://Nodes/player.tscn" id="3_qc4db"]
 [ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="4_ys1qc"]

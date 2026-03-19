@@ -14,6 +14,9 @@ var activated = false
 func postPhysics(delta):
 	if not canMove():
 		return
+	calcMovement(delta)
+
+func calcMovement(delta) -> void:
 	if global_position.distance_to(nodePlayer.global_position) >= deactivationDistance:
 		activated = false
 	elif global_position.distance_to(nodePlayer.global_position) < activationDistance:
@@ -28,5 +31,5 @@ func postPhysics(delta):
 	else:
 		navAgentUpdateTimer = 0
 
-func canMove():
+func canMove() -> bool:
 	return true

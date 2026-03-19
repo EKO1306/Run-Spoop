@@ -10,7 +10,6 @@ func _process(delta: float) -> void:
 	var direction = Vector2.from_angle(nodeMonster.rotation)
 	var distanceRatio = (nodeMonster.global_position * direction).distance_to(nodePlayer.global_position * direction)
 	if distanceRatio < 64:
-		print($AudioStreamPlayer.volume_linear)
 		nodePlayer.momentumValue -= delta * 50 * (1-(distanceRatio / 64))
 		nodePlayer.momentumValue = max(nodePlayer.momentumValue,0)
 		$AudioStreamPlayer.volume_linear = 1.5-(distanceRatio / 64)
@@ -28,5 +27,7 @@ func _process(delta: float) -> void:
 			node.get_parent().onDeath()
 	
 	distanceRatio = max((distanceRatio / 128) ** distanceSpeedMultiplier, 0.5)
-	nodeMonster.progress += speed * delta * distanceRatio
+	var momentumMultiplier = ((1.0 - ((100.0 + nodePlayer.momentumValue) / nodePlayer.maxMomentum) + 1.0) * 2)
+	#print(momentumMultiplier)
+	nodeMonster.progress += speed * delta * distanceRatio * momentumMultiplier
 	#progress += delta * speed * distanceRatio

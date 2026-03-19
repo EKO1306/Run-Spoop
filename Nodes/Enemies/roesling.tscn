@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://41e2ncc826b1"]
+[gd_scene format=3 uid="uid://41e2ncc826b1"]
 
 [ext_resource type="Script" uid="uid://cf40wdkqw5go3" path="res://Scripts/Enemies/enemy_thrower.gd" id="1_5qpri"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_000hw"]
@@ -246,7 +246,8 @@ _data = {
 &"RESET": SubResource("Animation_iy3jj")
 }
 
-[node name="Roesling" type="CharacterBody2D" groups=["EnemyCollider"]]
+[node name="Roesling" type="CharacterBody2D" unique_id=1331242883 groups=["EnemyCollider"]]
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_5qpri")
 rangedAttackAnimDelay = 0.4
@@ -256,39 +257,37 @@ contactDamage = 30.0
 deathMomentum = 30
 deathFlungEnemy = "roesling_flung"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1906089315]
 z_index = -1
 amount = 16
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_fl16a")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1780447918]
 material = SubResource("ShaderMaterial_23o7l")
 sprite_frames = SubResource("SpriteFrames_nxslx")
 animation = &"Hurt"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2008068722]
 shape = SubResource("CircleShape2D_reusw")
 
-[node name="CollisionArea" type="Area2D" parent="." groups=["EnemyCollider"]]
+[node name="CollisionArea" type="Area2D" parent="." unique_id=107288843 groups=["EnemyCollider"]]
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=877041850]
 shape = SubResource("CircleShape2D_fl16a")
 
-[node name="SoundHurt" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundHurt" type="AudioStreamPlayer2D" parent="." unique_id=441800311]
 stream = ExtResource("4_5qpri")
 pitch_scale = 0.75
 max_distance = 512.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ys2ib")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=234994590]
+libraries/ = SubResource("AnimationLibrary_ys2ib")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1547580304]
 target_position = Vector2(-10.475, 42.415)
 collision_mask = 16
 

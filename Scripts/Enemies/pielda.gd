@@ -14,7 +14,7 @@ func postProcess(_delta: float) -> void:
 func onHit(damage, projectile = null, playerProjectile = false):
 	if not alive:
 		return false
-	playAnim("Hurt",true)
+	playAnim("Hurt",true,true)
 	if shieldHealth > 0 and shieldUpTimer <= 0:
 		shieldHealth -= damage
 		$SoundShieldImpact.play()
@@ -46,15 +46,9 @@ func canMove():
 		return false
 	return true
 
-func _on_animated_sprite_2d_animation_finished() -> void:
-	playAnim("Idle")
-
-func playAnim(animationName, force = false, addSuffix = true):
-	if addSuffix:
-		if shieldHealth <= 0:
-			animationName += "_Shieldless"
-		elif shieldUpTimer > 0:
-			animationName += "_ShieldUp"
-
-	if nodeSprite.animation != animationName or force:
-		nodeSprite.play(animationName)
+func applySuffixes(animationName) -> String:
+	if shieldHealth <= 0:
+		animationName += "_Shieldless"
+	elif shieldUpTimer > 0:
+		animationName += "_ShieldUp"
+	return animationName

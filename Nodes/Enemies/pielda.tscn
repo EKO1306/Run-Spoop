@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dvcau0rr2xgl3"]
+[gd_scene format=3 uid="uid://dvcau0rr2xgl3"]
 
 [ext_resource type="Script" uid="uid://ug1wnoun3mt3" path="res://Scripts/Enemies/pielda.gd" id="1_23o7l"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_23o7l"]
@@ -346,7 +346,8 @@ _data = {
 &"RESET": SubResource("Animation_myqf5")
 }
 
-[node name="Pielda" type="CharacterBody2D" groups=["EnemyCollider"]]
+[node name="Pielda" type="CharacterBody2D" unique_id=664392695 groups=["EnemyCollider"]]
+collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_23o7l")
 maxHealth = 20
@@ -355,45 +356,46 @@ deathMomentum = 30
 deathFlungEnemy = "pielda_flung"
 knockbackValue = 2.0
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=679621853]
 target_desired_distance = 4.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 4.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1144929743]
 z_index = -1
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_23o7l")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=834090114]
 material = SubResource("ShaderMaterial_23o7l")
 sprite_frames = SubResource("SpriteFrames_lq5ip")
-animation = &"Hurt_ShieldUp"
+animation = &"Idle"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=861648657]
 shape = SubResource("CircleShape2D_reusw")
 
-[node name="CollisionArea" type="Area2D" parent="." groups=["EnemyCollider"]]
+[node name="CollisionArea" type="Area2D" parent="." unique_id=898145452 groups=["EnemyCollider"]]
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1525941304]
 shape = SubResource("CircleShape2D_fl16a")
 
-[node name="SoundShieldImpact" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundShieldImpact" type="AudioStreamPlayer2D" parent="." unique_id=53820026]
 stream = ExtResource("4_vfprm")
 max_distance = 512.0
 
-[node name="SoundShieldBreak" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundShieldBreak" type="AudioStreamPlayer2D" parent="." unique_id=597645315]
 stream = ExtResource("4_ql0s7")
 max_distance = 512.0
 
-[node name="SoundHurt" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundHurt" type="AudioStreamPlayer2D" parent="." unique_id=1166808802]
 stream = ExtResource("6_vfprm")
 max_distance = 512.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_cly6t")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=906430959]
+libraries/ = SubResource("AnimationLibrary_cly6t")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

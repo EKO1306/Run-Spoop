@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ursda8hfke2l"]
+[gd_scene format=3 uid="uid://ursda8hfke2l"]
 
 [ext_resource type="Script" uid="uid://camcpaubrqavl" path="res://Scripts/Projectiles/FlungEnemies/flungEnemyBase.gd" id="1_5ddji"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_olwpr"]
@@ -171,7 +171,7 @@ _data = {
 &"RESET": SubResource("Animation_olwpr")
 }
 
-[node name="FloofFlung" type="Area2D" groups=["Projectile"]]
+[node name="FloofFlung" type="Area2D" unique_id=249984338 groups=["Projectile"]]
 collision_layer = 32
 collision_mask = 48
 script = ExtResource("1_5ddji")
@@ -180,26 +180,24 @@ isPlayerAttack = true
 lifespan = 5.0
 heavyProjectile = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=731737270]
 z_index = -1
 amount = 16
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_61kwi")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2025493426]
 material = SubResource("ShaderMaterial_reusw")
 sprite_frames = SubResource("SpriteFrames_5ddji")
 animation = &"Dead"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1525549345]
 shape = SubResource("CircleShape2D_5ddji")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_olwpr")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=833457202]
+libraries/ = SubResource("AnimationLibrary_olwpr")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1648725746]
 stream = ExtResource("4_xbxpf")
 max_distance = 512.0

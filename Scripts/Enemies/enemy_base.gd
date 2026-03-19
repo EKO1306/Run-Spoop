@@ -31,18 +31,25 @@ func _physics_process(delta: float) -> void:
 	if not alive:
 		return
 	prePhysics(delta)
+	rotToPlayer(delta)
+	for node in $CollisionArea.get_overlapping_areas():
+		if node.is_in_group("Player"):
+			if node.get_parent().onHit(contactDamage, self):
+				playAnim("Attack", true, true)
+	postPhysics(delta)
+	moveSlide(delta)
+
+func rotToPlayer(_delta):
 	if rotateToPlayer:
 		rotation = global_position.angle_to_point(nodePlayer.global_position)
 	else:
+		rotation = 0.0
 		if global_position.x > nodePlayer.global_position.x:
 			nodeSprite.scale.x = -1
 		else:
 			nodeSprite.scale.x = 1
-	for node in $CollisionArea.get_overlapping_areas():
-		if node.is_in_group("Player"):
-			if node.get_parent().onHit(contactDamage, self):
-				playAnim("Attack",true)
-	postPhysics(delta)
+
+func moveSlide(delta):
 	velocity *= 0.7
 	move_and_slide()
 
@@ -56,7 +63,7 @@ func onHit(damage, projectile = null):
 	if not alive:
 		return false
 	statHealth -= damage
-	playAnim("Hurt",true)
+	playAnim("Hurt",true, true)
 	$SoundHurt.play()
 	if projectile != null:
 		velocity += (global_position.direction_to(projectile.global_position) * -knockbackValue) / get_physics_process_delta_time()
@@ -86,8 +93,14 @@ func onDeath(projectile = null):
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	playAnim("Idle")
+	playAnim("Idle", false, true)
 
-func playAnim(animationName, force = false):
+func playAnim(animationName, force = false, addSuffix = false):
+	if addSuffix:
+		animationName = applySuffixes(animationName)
+	
 	if nodeSprite.animation != animationName or force:
 		nodeSprite.play(animationName)
+
+func applySuffixes(_animationName) -> String:
+	return ""

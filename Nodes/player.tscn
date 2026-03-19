@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://tfyuf421rpdw"]
+[gd_scene format=3 uid="uid://tfyuf421rpdw"]
 
 [ext_resource type="Texture2D" uid="uid://c2fp5vkocnhnt" path="res://Images/Sprites/Player/Player.png" id="1_aoxlc"]
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="1_pie2b"]
@@ -213,12 +213,13 @@ region = Rect2(160, 34, 16, 33)
 atlas = ExtResource("12_8euyb")
 region = Rect2(160, 0, 15, 33)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=297446774 groups=["Player"]]
+collision_layer = 9
 script = ExtResource("1_qlfej")
 
-[node name="Sprite" type="CanvasGroup" parent="."]
+[node name="Sprite" type="CanvasGroup" parent="." unique_id=1954448003]
 
-[node name="Player" type="AnimatedSprite2D" parent="Sprite"]
+[node name="Player" type="AnimatedSprite2D" parent="Sprite" unique_id=1110051875]
 material = SubResource("ShaderMaterial_pie2b")
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_sfp35")
@@ -226,69 +227,67 @@ animation = &"Idle"
 autoplay = "Idle"
 offset = Vector2(0, -8)
 
-[node name="Revolver" type="AnimatedSprite2D" parent="Sprite"]
+[node name="Revolver" type="AnimatedSprite2D" parent="Sprite" unique_id=915290611]
 material = SubResource("ShaderMaterial_pie2b")
 position = Vector2(2, -4)
 sprite_frames = SubResource("SpriteFrames_e3gfx")
 animation = &"Idle"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015126232]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_6nrtn")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1719454951]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1147739726]
 color = Color(0.61137, 0.673765, 0.856615, 1)
 energy = 0.6
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_qlfej")
 height = 4.0
 
-[node name="CollisionArea" type="Area2D" parent="." groups=["Player"]]
+[node name="CollisionArea" type="Area2D" parent="." unique_id=727331348 groups=["Player"]]
 position = Vector2(0, -6)
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=728761733]
 shape = SubResource("CapsuleShape2D_pie2b")
 
-[node name="IdleAnim" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hv3sw")
-}
-autoplay = "Idle"
+[node name="IdleAnim" type="AnimationPlayer" parent="." unique_id=68919574]
+libraries/ = SubResource("AnimationLibrary_hv3sw")
+autoplay = &"Idle"
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=175500329]
 current = true
 
-[node name="PlayerHurt" type="AudioStreamPlayer2D" parent="."]
+[node name="PlayerHurt" type="AudioStreamPlayer2D" parent="." unique_id=80089783]
 stream = ExtResource("5_r4ynj")
 volume_db = 5.0
 pitch_scale = 0.75
 
-[node name="RevolverShoot" type="AudioStreamPlayer2D" parent="."]
+[node name="RevolverShoot" type="AudioStreamPlayer2D" parent="." unique_id=1759640955]
 stream = ExtResource("5_hv3sw")
 pitch_scale = 0.8
 
-[node name="KickShoot" type="AudioStreamPlayer2D" parent="."]
+[node name="KickShoot" type="AudioStreamPlayer2D" parent="." unique_id=695178826]
 stream = ExtResource("7_0bouj")
 
-[node name="Footstep" type="AudioStreamPlayer2D" parent="."]
+[node name="Footstep" type="AudioStreamPlayer2D" parent="." unique_id=444911624]
 stream = ExtResource("8_2hphp")
 volume_db = 5.0
 pitch_scale = 0.5
 
-[node name="RevolverClick" type="AudioStreamPlayer2D" parent="."]
+[node name="RevolverClick" type="AudioStreamPlayer2D" parent="." unique_id=1802457662]
 stream = ExtResource("7_wmu34")
 pitch_scale = 0.8
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1740394664]
 
-[node name="MomentumBarUI" type="TextureRect" parent="UI"]
+[node name="MomentumBarUI" type="TextureRect" parent="UI" unique_id=697920982]
 offset_left = 1728.0
 offset_top = 180.0
 offset_right = 1768.0
@@ -298,7 +297,7 @@ texture = SubResource("AtlasTexture_wha1n")
 script = ExtResource("11_hjyf3")
 progressGradient = SubResource("Gradient_ewvgn")
 
-[node name="MomentumChange" type="TextureProgressBar" parent="UI/MomentumBarUI"]
+[node name="MomentumChange" type="TextureProgressBar" parent="UI/MomentumBarUI" unique_id=2111329700]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -310,7 +309,7 @@ value = 77.0
 fill_mode = 3
 texture_progress = SubResource("AtlasTexture_3522b")
 
-[node name="MomentumBarPrimary" type="TextureProgressBar" parent="UI/MomentumBarUI"]
+[node name="MomentumBarPrimary" type="TextureProgressBar" parent="UI/MomentumBarUI" unique_id=1557104990]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -324,7 +323,7 @@ allow_lesser = true
 fill_mode = 3
 texture_progress = SubResource("AtlasTexture_3522b")
 
-[node name="AmmoBarUI" type="TextureRect" parent="UI"]
+[node name="AmmoBarUI" type="TextureRect" parent="UI" unique_id=1615596989]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -336,7 +335,7 @@ scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_o3lat")
 script = ExtResource("13_axrd7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/AmmoBarUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/AmmoBarUI" unique_id=1731128808]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -348,11 +347,11 @@ offset_bottom = -1.75
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BulletBG" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+[node name="BulletBG" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer" unique_id=834591072]
 layout_mode = 2
 texture = SubResource("AtlasTexture_u4dl4")
 
-[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG"]
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG" unique_id=625327173]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -362,11 +361,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ynwet")
 
-[node name="BulletBG2" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+[node name="BulletBG2" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer" unique_id=212804319]
 layout_mode = 2
 texture = SubResource("AtlasTexture_u4dl4")
 
-[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG2"]
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG2" unique_id=796989690]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -376,11 +375,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ynwet")
 
-[node name="BulletBG3" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer"]
+[node name="BulletBG3" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer" unique_id=1682718740]
 layout_mode = 2
 texture = SubResource("AtlasTexture_u4dl4")
 
-[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG3"]
+[node name="Bullet" type="TextureRect" parent="UI/AmmoBarUI/HBoxContainer/BulletBG3" unique_id=721012489]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
