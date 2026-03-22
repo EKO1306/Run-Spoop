@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_olwpr"]
 [ext_resource type="Texture2D" uid="uid://bpricxfnogug" path="res://Images/Sprites/Enemies/Floofs.png" id="2_q2ipg"]
 [ext_resource type="AudioStream" uid="uid://dks3c21v0vbtq" path="res://Audio/SFX/Enemies/enemyDustBurst.mp3" id="4_xbxpf"]
+[ext_resource type="AudioStream" uid="uid://d4jk7pf4l6b6x" path="res://Audio/SFX/Enemies/enemyFlungImpact.mp3" id="5_l14t0"]
 
 [sub_resource type="Gradient" id="Gradient_olwpr"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
@@ -201,3 +202,9 @@ libraries/ = SubResource("AnimationLibrary_olwpr")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1648725746]
 stream = ExtResource("4_xbxpf")
 max_distance = 512.0
+
+[node name="EnemyCollideSound" type="AudioStreamPlayer2D" parent="." unique_id=769598711]
+stream = ExtResource("5_l14t0")
+volume_db = -10.0
+pitch_scale = 0.7
+max_distance = 1024.0

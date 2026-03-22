@@ -11,7 +11,7 @@ func postProcess(_delta: float) -> void:
 	else:
 		nodeSprite.position = Vector2.ZERO
 
-func onHit(damage, projectile = null, playerProjectile = false):
+func onHit(damage, projectile = null, _playerProjectile = false):
 	if not alive:
 		return false
 	playAnim("Hurt",true,true)
@@ -27,7 +27,7 @@ func onHit(damage, projectile = null, playerProjectile = false):
 			shieldUpTimer = 3.0
 			playAnim("Enter_ShieldUp",true,false)
 	else:
-		$SoundHurt.play
+		$SoundHurt.play()
 		statHealth -= damage
 	if projectile != null:
 		velocity += (global_position.direction_to(projectile.global_position) * -knockbackValue) / get_physics_process_delta_time()

@@ -4,11 +4,12 @@
 [ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_kifv1"]
 [ext_resource type="Texture2D" uid="uid://bk3ya516f1c8f" path="res://Images/Sprites/Enemies/Pirhaan.png" id="3_4ye4j"]
 [ext_resource type="AudioStream" uid="uid://bygu7o2mnseiv" path="res://Audio/SFX/Enemies/enemyDustImpact.mp3" id="4_gf2yy"]
-[ext_resource type="AudioStream" uid="uid://cvox8eip70h4u" path="res://Audio/SFX/Player/kickFire.mp3" id="5_kifv1"]
+[ext_resource type="AudioStream" uid="uid://dh2hf123vjs7j" path="res://Audio/SFX/Enemies/pirhaanLunge.mp3" id="5_0c5g4"]
 [ext_resource type="AudioStream" uid="uid://b6235y1rb3gu1" path="res://Audio/SFX/Enemies/pirhaanFlop.mp3" id="6_0c5g4"]
 
 [sub_resource type="Gradient" id="Gradient_fl16a"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.2178899, 0.5298165, 0.7522936, 1)
+colors = PackedColorArray(0.18039216, 0.3254902, 0.28627452, 0, 0.25882354, 0.4627451, 0.46666667, 1, 0.4509804, 0.69411767, 0.6901961, 1, 0.75686276, 0.8901961, 0.9607843, 1, 0.75686276, 0.8901961, 0.9607843, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_fl16a"]
 gradient = SubResource("Gradient_fl16a")
@@ -46,6 +47,23 @@ scale_max = 4.0
 scale_curve = SubResource("CurveTexture_iy3jj")
 color = Color(0.258824, 0.239216, 0.239216, 1)
 color_ramp = SubResource("GradientTexture1D_fl16a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0c5g4"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 90, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_iy3jj")
+color_ramp = SubResource("GradientTexture1D_fl16a")
+color_initial_ramp = SubResource("GradientTexture1D_fl16a")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1uvlj"]
 shader = ExtResource("2_kifv1")
@@ -350,6 +368,14 @@ amount = 16
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_fl16a")
 
+[node name="SplashParticles" type="GPUParticles2D" parent="." unique_id=1718837785]
+top_level = true
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0c5g4")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=286557593]
 material = SubResource("ShaderMaterial_1uvlj")
 sprite_frames = SubResource("SpriteFrames_5jy72")
@@ -372,9 +398,7 @@ stream = ExtResource("4_gf2yy")
 max_distance = 512.0
 
 [node name="SoundLunge" type="AudioStreamPlayer2D" parent="." unique_id=2064820859]
-stream = ExtResource("5_kifv1")
-volume_db = 10.0
-pitch_scale = 0.8
+stream = ExtResource("5_0c5g4")
 max_distance = 512.0
 
 [node name="SoundFlop" type="AudioStreamPlayer2D" parent="." unique_id=1080607232]

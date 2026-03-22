@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	
 	for node in nodeCollider.get_overlapping_areas():
 		if node.is_in_group("Player"):
-			get_tree().reload_current_scene()
+			get_tree().current_scene.reloadScene()
 			return
 		if node.is_in_group("EnemyCollider"):
 			node.get_parent().onDeath()

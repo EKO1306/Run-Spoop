@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://tfyuf421rpdw" path="res://Nodes/player.tscn" id="2_ffuqj"]
 [ext_resource type="PackedScene" uid="uid://r2mupw21fwny" path="res://Nodes/Misc/monster.tscn" id="3_754lc"]
 [ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="4_lkwid"]
+[ext_resource type="PackedScene" uid="uid://bf4prt8tkqvbw" path="res://Scenes/Levels/level_1_2.tscn" id="5_2vri1"]
 [ext_resource type="PackedScene" uid="uid://dvcau0rr2xgl3" path="res://Nodes/Enemies/pielda.tscn" id="5_x5idj"]
 [ext_resource type="PackedScene" uid="uid://cy542nc01dgaj" path="res://Nodes/Misc/exit_door.tscn" id="7_2vri1"]
 
@@ -25,6 +26,10 @@ tile_map_data = PackedByteArray("AAD+/wIAAAABAAgAAAD+//3/AAABAAYAAAD+//7/AAABAAc
 position = Vector2(-168, 0)
 curve = SubResource("Curve2D_lkwid")
 distanceSpeedMultiplier = 4.0
+
+[node name="ExitDoor" parent="." unique_id=2147438569 instance=ExtResource("7_2vri1")]
+position = Vector2(432, -544)
+nextLevel = ExtResource("5_2vri1")
 
 [node name="Floof" parent="." unique_id=454076279 instance=ExtResource("4_lkwid")]
 position = Vector2(128, 16)
@@ -100,7 +105,3 @@ position = Vector2(411, -490)
 
 [node name="Floof24" parent="." unique_id=1245828487 instance=ExtResource("4_lkwid")]
 position = Vector2(456, -510)
-
-[node name="ExitDoor" parent="." unique_id=2147438569 instance=ExtResource("7_2vri1")]
-position = Vector2(432, -544)
-nextLevel = "level_1_2"

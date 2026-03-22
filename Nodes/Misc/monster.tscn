@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://r2mupw21fwny"]
+[gd_scene format=3 uid="uid://r2mupw21fwny"]
 
 [ext_resource type="Script" uid="uid://trowjkp0ew2e" path="res://Scripts/Enemies/monster.gd" id="1_8uxgj"]
 [ext_resource type="AudioStream" uid="uid://bpp3632kq6ugs" path="res://Audio/SFX/Enemies/monsterIdle.mp3" id="2_5qh6w"]
@@ -15,26 +15,26 @@ height = 32
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yb21e"]
 normal = Vector2(1, 0)
 
-[node name="Monster" type="Path2D"]
+[node name="Monster" type="Path2D" unique_id=848582328]
 script = ExtResource("1_8uxgj")
 distanceSpeedMultiplier = 2.0
 
-[node name="PathFollow2D" type="PathFollow2D" parent="."]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=837870323]
 
-[node name="Monster" type="Area2D" parent="PathFollow2D"]
+[node name="Monster" type="Area2D" parent="PathFollow2D" unique_id=599433018]
 collision_layer = 18
 collision_mask = 18
 
-[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Monster"]
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Monster" unique_id=1519337607]
 z_index = 69
 scale = Vector2(1, 400)
 texture = SubResource("GradientTexture2D_aees8")
 offset = Vector2(-64, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Monster"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Monster" unique_id=882814621]
 shape = SubResource("WorldBoundaryShape2D_yb21e")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=663705423]
 stream = ExtResource("2_5qh6w")
 autoplay = true
 parameters/looping = true

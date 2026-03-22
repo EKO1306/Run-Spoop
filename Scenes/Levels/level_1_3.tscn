@@ -129,9 +129,8 @@ tile_map_data = PackedByteArray("AAANAP3/AAAAAAAAAAAOAPz/AAABAAAAAQAPAP3/AAABAAA
 visible = false
 position = Vector2(-128, 0)
 
-[node name="ExitDoor" parent="." unique_id=87302638 instance=ExtResource("4_lpmkt")]
+[node name="ExitDoor" parent="." unique_id=1117247636 instance=ExtResource("4_lpmkt")]
 position = Vector2(960, 0)
-nextLevel = "level_1_1"
 
 [node name="Misc" type="Node2D" parent="." unique_id=1482389199]
 
@@ -290,3 +289,4 @@ position = Vector2(848, 32)
 
 [node name="Roesling" parent="Enemies" unique_id=1331242883 instance=ExtResource("11_5fdp0")]
 position = Vector2(888, -64)
+startingRangedOffset = 1.2

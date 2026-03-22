@@ -6,7 +6,7 @@ var queue = []
 func _ready() -> void:
 	global_position = Vector2.ZERO
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	queue.push_front(get_parent().global_position)
 	if queue.size() > maxLength:
 		queue.pop_back()

@@ -64,17 +64,29 @@ region = Rect2(48, 96, 48, 48)
 atlas = ExtResource("4_23o7l")
 region = Rect2(96, 96, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kmqrp"]
-atlas = ExtResource("4_23o7l")
-region = Rect2(0, 144, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tomet"]
 atlas = ExtResource("4_23o7l")
 region = Rect2(48, 144, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmqrp"]
+atlas = ExtResource("4_23o7l")
+region = Rect2(0, 144, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_crc02"]
 atlas = ExtResource("4_23o7l")
 region = Rect2(96, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h84sa"]
+atlas = ExtResource("4_23o7l")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnr6v"]
+atlas = ExtResource("4_23o7l")
+region = Rect2(96, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttkm1"]
+atlas = ExtResource("4_23o7l")
+region = Rect2(48, 336, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iq7bf"]
 atlas = ExtResource("4_23o7l")
@@ -128,18 +140,6 @@ region = Rect2(96, 0, 48, 48)
 atlas = ExtResource("4_23o7l")
 region = Rect2(0, 192, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h84sa"]
-atlas = ExtResource("4_23o7l")
-region = Rect2(0, 336, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ttkm1"]
-atlas = ExtResource("4_23o7l")
-region = Rect2(48, 336, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bnr6v"]
-atlas = ExtResource("4_23o7l")
-region = Rect2(96, 336, 48, 48)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_lq5ip"]
 animations = [{
 "frames": [{
@@ -154,6 +154,37 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_tomet")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_kmqrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tomet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crc02")
+}],
+"loop": false,
+"name": &"Attack_ShieldUp",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h84sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnr6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttkm1")
+}],
+"loop": false,
+"name": &"Attack_Shieldless",
 "speed": 10.0
 }, {
 "frames": [{

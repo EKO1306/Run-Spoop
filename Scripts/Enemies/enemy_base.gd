@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 @onready var nodePlayer = get_tree().get_current_scene().main.get_node("Player")
 @onready var nodeSprite = $AnimatedSprite2D
+@onready var nodeAnimPlayer = $AnimationPlayer
 
 var alive = true
 var deathTimer = 0
@@ -49,7 +50,7 @@ func rotToPlayer(_delta):
 		else:
 			nodeSprite.scale.x = 1
 
-func moveSlide(delta):
+func moveSlide(_delta):
 	velocity *= 0.7
 	move_and_slide()
 
@@ -72,7 +73,7 @@ func onHit(damage, projectile = null):
 	postHit(damage, projectile)
 	return true
 
-func postHit(damage, projectile = null):
+func postHit(_damage, _projectile = null):
 	pass
 
 func onDeath(projectile = null):
@@ -84,7 +85,7 @@ func onDeath(projectile = null):
 			if projectile != null:
 				flungEnemy.direction = projectile.direction
 			get_tree().get_current_scene().main.add_child(flungEnemy)
-	$AnimationPlayer.play("Dead")
+	nodeAnimPlayer.play("Dead")
 	alive = false
 	deathTimer = 1.0
 	$CollisionArea.monitoring = false
@@ -102,5 +103,5 @@ func playAnim(animationName, force = false, addSuffix = false):
 	if nodeSprite.animation != animationName or force:
 		nodeSprite.play(animationName)
 
-func applySuffixes(_animationName) -> String:
-	return ""
+func applySuffixes(animationName) -> String:
+	return animationName

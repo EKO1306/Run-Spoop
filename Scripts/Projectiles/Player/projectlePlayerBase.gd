@@ -24,7 +24,7 @@ var velocity = Vector2.ZERO
 func _ready() -> void:
 	remainingLifespan = lifespan
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rotation = Vector2.ZERO.angle_to_point(direction)
 
 func _physics_process(delta: float) -> void:

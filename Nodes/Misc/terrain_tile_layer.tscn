@@ -609,13 +609,6 @@ texture = ExtResource("2_cgrl2")
 2:10/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:10/0/physics_layer_4/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:10/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_gd4q0")
-1:12/animation_separation = Vector2i(2, 0)
-1:12/animation_speed = 10.0
-1:12/animation_frame_0/duration = 1.0
-1:12/animation_frame_1/duration = 1.0
-1:12/animation_frame_2/duration = 1.0
-1:12/animation_frame_3/duration = 1.0
-1:12/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d7tos"]
 texture = ExtResource("3_fbodw")

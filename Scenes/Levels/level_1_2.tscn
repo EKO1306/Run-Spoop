@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://r2mupw21fwny" path="res://Nodes/Misc/monster.tscn" id="3_wqaph"]
 [ext_resource type="PackedScene" uid="uid://cy542nc01dgaj" path="res://Nodes/Misc/exit_door.tscn" id="4_lk4gv"]
 [ext_resource type="Texture2D" uid="uid://cdtlywqgtudsm" path="res://Images/Tiles/Sprites/Sewer/SewerTunnel.png" id="5_4ykjx"]
+[ext_resource type="PackedScene" uid="uid://c07trss6wbev1" path="res://Scenes/Levels/level_1_3.tscn" id="5_7born"]
 [ext_resource type="PackedScene" uid="uid://cr1stiiaw31ud" path="res://Nodes/Misc/water_collider.tscn" id="6_wqaph"]
 [ext_resource type="PackedScene" uid="uid://dvcau0rr2xgl3" path="res://Nodes/Enemies/pielda.tscn" id="7_uvppx"]
 [ext_resource type="PackedScene" uid="uid://lxsb8bc6rkis" path="res://Nodes/Enemies/floof.tscn" id="8_ptv6u"]
@@ -118,7 +119,7 @@ curve = SubResource("Curve2D_uvppx")
 
 [node name="ExitDoor" parent="." unique_id=160504796 instance=ExtResource("4_lk4gv")]
 position = Vector2(1168, -224)
-nextLevel = "level_1_1"
+nextLevel = ExtResource("5_7born")
 
 [node name="SewerTunnel" type="AnimatedSprite2D" parent="." unique_id=407385035]
 position = Vector2(88, -80)
@@ -306,6 +307,7 @@ position = Vector2(491, 99)
 
 [node name="Roesling" parent="." unique_id=1421246301 instance=ExtResource("9_ptv6u")]
 position = Vector2(530, 3)
+startingRangedOffset = 0.8
 
 [node name="Floof18" parent="." unique_id=2022615674 instance=ExtResource("8_ptv6u")]
 position = Vector2(426, 6)
@@ -357,9 +359,11 @@ position = Vector2(719, -31)
 
 [node name="Roesling2" parent="." unique_id=111618114 instance=ExtResource("9_ptv6u")]
 position = Vector2(755, -97)
+startingRangedOffset = 1.3
 
 [node name="Roesling3" parent="." unique_id=2129140477 instance=ExtResource("9_ptv6u")]
 position = Vector2(834, -96)
+startingRangedOffset = 1.9
 
 [node name="Floof3" parent="." unique_id=1946883677 instance=ExtResource("8_ptv6u")]
 position = Vector2(770, -3)
@@ -369,6 +373,7 @@ position = Vector2(951, -2)
 
 [node name="Roesling4" parent="." unique_id=556182932 instance=ExtResource("9_ptv6u")]
 position = Vector2(896, 65)
+startingRangedOffset = 0.3
 
 [node name="Floof15" parent="." unique_id=1321300601 instance=ExtResource("8_ptv6u")]
 position = Vector2(895, 135)
@@ -402,18 +407,22 @@ position = Vector2(1094, -182)
 
 [node name="Roesling5" parent="." unique_id=1964558486 instance=ExtResource("9_ptv6u")]
 position = Vector2(1052, -35)
+startingRangedOffset = 0.5
 
 [node name="Roesling6" parent="." unique_id=1117905249 instance=ExtResource("9_ptv6u")]
 position = Vector2(1085, -25)
+startingRangedOffset = 1.4
 
 [node name="Pielda" parent="." unique_id=532456220 instance=ExtResource("7_uvppx")]
 position = Vector2(1184, -141)
 
 [node name="Roesling7" parent="." unique_id=207026204 instance=ExtResource("9_ptv6u")]
 position = Vector2(1147, -194)
+startingRangedOffset = 0.2
 
 [node name="Roesling8" parent="." unique_id=368218295 instance=ExtResource("9_ptv6u")]
 position = Vector2(1193, -184)
+startingRangedOffset = 0.9
 
 [node name="Floof38" parent="." unique_id=253829590 instance=ExtResource("8_ptv6u")]
 position = Vector2(1190, -39)

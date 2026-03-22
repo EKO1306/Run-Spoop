@@ -14,6 +14,8 @@ var momentumValue = 100
 var maxMomentum = 100
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("restart"):
+		get_tree().current_scene.reloadScene()
 	if Input.is_action_just_pressed("TESTIncreaseMomentum"):
 		momentumValue += 50
 		momentumValue = min(momentumValue,maxMomentum)
