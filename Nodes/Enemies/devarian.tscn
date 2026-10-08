@@ -192,10 +192,11 @@ script = ExtResource("1_1uvlj")
 moveSpeed = 2.0
 maxHealth = 200
 contactDamage = 30.0
-deathMomentum = 50
-deathFlungEnemy = "floof_flung"
 knockbackValue = 1.0
 rotateToPlayer = false
+spawnSize = 2
+deathFlungEnemy = "floof_flung"
+deathMomentum = 50
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1838167873]
 target_desired_distance = 4.0

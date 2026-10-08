@@ -1,0 +1,247 @@
+[gd_scene format=3 uid="uid://mqiwe0hroedl"]
+
+[ext_resource type="Script" uid="uid://bei3vuhvmefip" path="res://Scripts/Enemies/Misc/enemy_spawn.gd" id="1_he6lk"]
+[ext_resource type="Texture2D" uid="uid://do51hgrvuqi7j" path="res://Images/Sprites/Enemies/Misc/enemySpawn.png" id="1_o34wx"]
+[ext_resource type="AudioStream" uid="uid://ji50o7fta1tp" path="res://Audio/SFX/Misc/enemySpawn.mp3" id="3_ww8m0"]
+
+[sub_resource type="Animation" id="Animation_o34wx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticlesAbsorbtion:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParticlesBurst:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpawnSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ibh5p"]
+resource_name = "Spawn"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticlesAbsorbtion:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParticlesBurst:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spawnEnemy"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpawnSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o34wx"]
+_data = {
+&"RESET": SubResource("Animation_o34wx"),
+&"Spawn": SubResource("Animation_ibh5p")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he6lk"]
+atlas = ExtResource("1_o34wx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Gradient" id="Gradient_o34wx"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fl16a"]
+gradient = SubResource("Gradient_o34wx")
+
+[sub_resource type="Curve" id="Curve_he6lk"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0.00729927, 30.8943), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_reusw"]
+curve = SubResource("Curve_he6lk")
+
+[sub_resource type="Curve" id="Curve_ww8m0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.796748), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iy3jj"]
+curve = SubResource("Curve_ww8m0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u8ut3"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 8.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -180.0
+radial_accel_max = -90.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_reusw")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_iy3jj")
+color = Color(0.258824, 0.239216, 0.239216, 1)
+color_ramp = SubResource("GradientTexture1D_fl16a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o34wx"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 89.99999
+radial_accel_max = 180.0
+damping_curve = SubResource("CurveTexture_reusw")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_iy3jj")
+color = Color(0.258824, 0.239216, 0.239216, 1)
+color_ramp = SubResource("GradientTexture1D_fl16a")
+
+[node name="EnemySpawnSmall" type="Node2D" unique_id=1470362207]
+z_index = 1
+script = ExtResource("1_he6lk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=209427984]
+libraries/ = SubResource("AnimationLibrary_o34wx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1377999609]
+texture = SubResource("AtlasTexture_he6lk")
+
+[node name="ParticlesAbsorbtion" type="GPUParticles2D" parent="." unique_id=1358021917]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_u8ut3")
+
+[node name="ParticlesBurst" type="GPUParticles2D" parent="." unique_id=1773578003]
+amount = 16
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_o34wx")
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="." unique_id=2075566699]
+stream = ExtResource("3_ww8m0")
+volume_db = -20.0
+pitch_scale = 0.7

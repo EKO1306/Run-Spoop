@@ -281,13 +281,16 @@ _data = {
 }
 
 [node name="Roesling" type="CharacterBody2D" unique_id=1331242883 groups=["EnemyCollider"]]
+top_level = true
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_5qpri")
+activationDistance = 192.0
 maxHealth = 40
-contactDamage = 30.0
-deathMomentum = 30
+contactDamage = 20.0
+spawnSize = 1
 deathFlungEnemy = "roesling_flung"
+deathMomentum = 30
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1906089315]
 z_index = -1

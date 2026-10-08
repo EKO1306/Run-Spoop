@@ -24,6 +24,8 @@ texture = ExtResource("1_2ho5j")
 1:1/1 = 1
 1:1/1/flip_h = true
 1:1/1/texture_origin = Vector2i(2, 0)
+2:0/0 = 0
+3:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jfks"]
 texture = ExtResource("2_k4erc")

@@ -224,15 +224,15 @@ _data = {
 }
 
 [node name="Rosecochet" type="CharacterBody2D" unique_id=1564293050 groups=["EnemyCollider"]]
+top_level = true
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_3pboy")
-rangedAttackAnimDelay = 0.4
-hitRangedAttackDelay = 0.3
 maxHealth = 40
 contactDamage = 30.0
-deathMomentum = 30
+spawnSize = 1
 deathFlungEnemy = "roesling_flung"
+deathMomentum = 30
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=19136974]
 z_index = -1

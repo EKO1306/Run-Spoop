@@ -23,7 +23,7 @@ _data = {
 }
 
 [node name="PlayerProjectileBullet" type="Area2D" unique_id=2067273086 groups=["Projectile"]]
-collision_layer = 32
+collision_layer = 48
 collision_mask = 48
 script = ExtResource("1_f5ens")
 attackDamage = 80

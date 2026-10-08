@@ -13,11 +13,19 @@
 [ext_resource type="Script" uid="uid://vrhj5w5dav8b" path="res://Scripts/UI/HUD/momentum_bar.gd" id="11_hjyf3"]
 [ext_resource type="Texture2D" uid="uid://11uxek4iqea7" path="res://Images/UI/HUD/AmmoBar.png" id="12_8euyb"]
 [ext_resource type="Script" uid="uid://dcsnnssqkytfb" path="res://Scripts/UI/HUD/ammo_bar.gd" id="13_axrd7"]
+[ext_resource type="Script" uid="uid://c5wks8g83605t" path="res://Scripts/UI/HUD/timer_ui.gd" id="14_hjyf3"]
+[ext_resource type="Script" uid="uid://brh0uhx2euan5" path="res://Scripts/UI/HUD/overlays.gd" id="15_8euyb"]
+[ext_resource type="Theme" uid="uid://bq3bjn7y7ojg1" path="res://Themes/ui_basic.tres" id="16_axrd7"]
+[ext_resource type="Script" uid="uid://buorbub5dnnf1" path="res://Scripts/UI/HUD/pause_menu.gd" id="17_wha1n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pie2b"]
 shader = ExtResource("1_pie2b")
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_size = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8euyb"]
+atlas = ExtResource("1_aoxlc")
+region = Rect2(0, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pie2b"]
 atlas = ExtResource("1_aoxlc")
@@ -45,6 +53,14 @@ region = Rect2(96, 48, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sfp35"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8euyb")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pie2b")
@@ -188,6 +204,18 @@ _data = {
 &"RESET": SubResource("Animation_sfp35")
 }
 
+[sub_resource type="Gradient" id="Gradient_hjyf3"]
+offsets = PackedFloat32Array(0.23282443, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8euyb"]
+gradient = SubResource("Gradient_hjyf3")
+width = 1920
+height = 1920
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wha1n"]
 atlas = ExtResource("10_6nrtn")
 region = Rect2(0, 0, 40, 180)
@@ -214,12 +242,14 @@ atlas = ExtResource("12_8euyb")
 region = Rect2(160, 0, 15, 33)
 
 [node name="Player" type="CharacterBody2D" unique_id=297446774 groups=["Player"]]
+top_level = true
 collision_layer = 9
 script = ExtResource("1_qlfej")
 
 [node name="Sprite" type="CanvasGroup" parent="." unique_id=1954448003]
 
 [node name="Player" type="AnimatedSprite2D" parent="Sprite" unique_id=1110051875]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_pie2b")
 position = Vector2(-1, 2)
 sprite_frames = SubResource("SpriteFrames_sfp35")
@@ -240,6 +270,7 @@ shape = SubResource("CircleShape2D_6nrtn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1719454951]
 zoom = Vector2(5, 5)
+limit_enabled = false
 position_smoothing_enabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1147739726]
@@ -286,6 +317,28 @@ stream = ExtResource("7_wmu34")
 pitch_scale = 0.8
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1740394664]
+visible = false
+
+[node name="Overlays" type="Control" parent="UI" unique_id=738007682]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("15_8euyb")
+
+[node name="EnergyLowOverlay" type="TextureRect" parent="UI/Overlays" unique_id=249245352]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_8euyb")
 
 [node name="MomentumBarUI" type="TextureRect" parent="UI" unique_id=697920982]
 offset_left = 1728.0
@@ -321,6 +374,21 @@ value = 50.0
 allow_greater = true
 allow_lesser = true
 fill_mode = 3
+texture_progress = SubResource("AtlasTexture_3522b")
+
+[node name="MomentumBarDamage" type="TextureProgressBar" parent="UI/MomentumBarUI" unique_id=1044770030]
+modulate = Color(0.22352941, 0.2901961, 0.3137255, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.0
+value = 10.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 2
 texture_progress = SubResource("AtlasTexture_3522b")
 
 [node name="AmmoBarUI" type="TextureRect" parent="UI" unique_id=1615596989]
@@ -389,5 +457,115 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_ynwet")
 
+[node name="TimerUI" type="TextureRect" parent="UI" unique_id=1013544756]
+offset_left = -56.0
+offset_top = -88.0
+offset_right = 104.0
+offset_bottom = -48.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_o3lat")
+flip_v = true
+script = ExtResource("14_hjyf3")
+
+[node name="TimerMain" type="RichTextLabel" parent="UI/TimerUI" unique_id=1993512171]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -22.5
+offset_right = 85.0
+offset_bottom = 0.5
+grow_vertical = 0
+bbcode_enabled = true
+text = "0:00:00[font_size={8}].000[/font_size]"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="DebugText" type="RichTextLabel" parent="UI/TimerUI" unique_id=1779371549]
+visible = false
+layout_mode = 0
+offset_left = 108.0
+offset_top = 22.0
+offset_right = 215.0
+offset_bottom = 45.0
+theme_override_colors/default_color = Color(1, 1, 0, 1)
+text = "DEBUG MODE"
+fit_content = true
+autowrap_mode = 0
+
+[node name="PauseMenu" type="Panel" parent="UI" unique_id=1650324999]
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(480, 668)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -398.0
+offset_right = 240.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_axrd7")
+script = ExtResource("17_wha1n")
+
+[node name="PauseText" type="RichTextLabel" parent="UI/PauseMenu" unique_id=1330982803]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -360.0
+offset_bottom = 32.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+theme_override_font_sizes/normal_font_size = 24
+text = "PAUSED"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=1032472050]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 64.0
+offset_top = 256.0
+offset_right = -64.0
+offset_bottom = 352.0
+grow_horizontal = 2
+theme = ExtResource("16_axrd7")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="UI/PauseMenu" unique_id=354739903]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 64.0
+offset_top = 368.0
+offset_right = -64.0
+offset_bottom = 464.0
+grow_horizontal = 2
+theme = ExtResource("16_axrd7")
+text = "Restart"
+
+[node name="Quit" type="Button" parent="UI/PauseMenu" unique_id=1495148404]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 64.0
+offset_top = 480.0
+offset_right = -64.0
+offset_bottom = 576.0
+grow_horizontal = 2
+theme = ExtResource("16_axrd7")
+text = "Quit to Menu"
+
 [connection signal="animation_finished" from="Sprite/Player" to="." method="_on_player_animation_finished"]
 [connection signal="animation_finished" from="Sprite/Revolver" to="." method="_on_revolver_animation_finished"]
+[connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Restart" to="UI/PauseMenu" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/Quit" to="UI/PauseMenu" method="_on_quit_pressed"]

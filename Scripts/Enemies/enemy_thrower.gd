@@ -10,6 +10,13 @@ var activated = false
 var canSeePlayer
 
 func postPhysics(delta):
+	var distToPlayer = global_position.distance_to(nodePlayer.global_position)
+	if activated:
+		if distToPlayer >= deactivationDistance:
+			activated = false
+	else:
+		if distToPlayer <= activationDistance:
+			activated = true
 	$RayCast2D.target_position = to_local(nodePlayer.global_position)
 	canSeePlayer = $RayCast2D.get_collider() == null
 	
@@ -32,4 +39,4 @@ func postHit(_damage, _projectile = null):
 		nodeAnimPlayer.play("RESET")
 
 func canAttack():
-	return canSeePlayer
+	return canSeePlayer and activated

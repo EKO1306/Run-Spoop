@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbl5cbsa2qw5g"]
+
+[ext_resource type="Script" uid="uid://d1xytkbov7274" path="res://Scripts/Enemies/Misc/arena.gd" id="1_cxgml"]
+
+[node name="Arena" type="Area2D" unique_id=1926859585]
+collision_layer = 0
+script = ExtResource("1_cxgml")
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1418423874]
+wait_time = 0.5
+one_shot = true
+
+[node name="EndTimer" type="Timer" parent="." unique_id=597112965]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]

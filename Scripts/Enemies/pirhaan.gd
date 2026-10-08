@@ -46,7 +46,6 @@ func postPhysics(delta):
 	
 	add_to_group("NotWaterPushable")
 	
-	#print(remainingLungeDistance)
 	if remainingLungeDistance > 0.0:
 		$GPUParticles2D.emitting = true
 		velocity = velocity.lerp(lungeMaxSpeed * lungeDir,delta * lungeMoveSpeed)

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bggq36evuhbve"]
+
+[ext_resource type="Texture2D" uid="uid://nkgvyhmbb720" path="res://Images/Tiles/Sprites/Switch.png" id="1_aww4g"]
+[ext_resource type="Script" uid="uid://ca4ifwycsikc7" path="res://Scripts/Misc. Entities/switch.gd" id="1_r24wb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r24wb"]
+atlas = ExtResource("1_aww4g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1a8x"]
+atlas = ExtResource("1_aww4g")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5tg5"]
+atlas = ExtResource("1_aww4g")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erbjb"]
+atlas = ExtResource("1_aww4g")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8n5rm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r24wb")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1a8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5tg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erbjb")
+}],
+"loop": false,
+"name": &"On",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aww4g"]
+size = Vector2(8, 4)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r24wb"]
+radius = 5.0
+height = 16.0
+
+[node name="Switch" type="StaticBody2D" unique_id=688255037 groups=["EnemyCollider", "Terrain"]]
+collision_mask = 0
+script = ExtResource("1_r24wb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2070141623]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_8n5rm")
+animation = &"Off"
+autoplay = "Off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77758653]
+shape = SubResource("RectangleShape2D_aww4g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=389523236 groups=["EnemyCollider"]]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1169035519]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_r24wb")

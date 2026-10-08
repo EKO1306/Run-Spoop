@@ -1,0 +1,593 @@
+[gd_scene format=3 uid="uid://0s6rbfytqwfq"]
+
+[ext_resource type="Script" uid="uid://b1tiif0clbt6v" path="res://Scripts/Enemies/ripperfloof.gd" id="1_oisnq"]
+[ext_resource type="Shader" uid="uid://bydehgbrnvtq" path="res://Shaders/outline.gdshader" id="2_oisnq"]
+[ext_resource type="AudioStream" uid="uid://bygu7o2mnseiv" path="res://Audio/SFX/Enemies/enemyDustImpact.mp3" id="4_24t87"]
+[ext_resource type="Texture2D" uid="uid://c08wh3khl2v21" path="res://Images/Sprites/Enemies/Ripperfloof.png" id="4_oisnq"]
+[ext_resource type="AudioStream" uid="uid://lbpvgd775sgt" path="res://Audio/SFX/Enemies/ripperfloofWindup.mp3" id="6_fvnle"]
+[ext_resource type="AudioStream" uid="uid://dbgd8g1lle5do" path="res://Audio/SFX/Enemies/shieldImpact.mp3" id="6_wl5vi"]
+[ext_resource type="AudioStream" uid="uid://bg2ecj6lsk1nk" path="res://Audio/SFX/Enemies/ripperfloofSpinning.mp3" id="7_3h33d"]
+[ext_resource type="AudioStream" uid="uid://djhg31jw408mj" path="res://Audio/SFX/Enemies/ripperfloofStopping.mp3" id="8_71sq2"]
+
+[sub_resource type="Gradient" id="Gradient_fl16a"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fl16a"]
+gradient = SubResource("Gradient_fl16a")
+
+[sub_resource type="Curve" id="Curve_fl16a"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0.00729927, 30.8943), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_reusw"]
+curve = SubResource("Curve_fl16a")
+
+[sub_resource type="Curve" id="Curve_iy3jj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.796748), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iy3jj"]
+curve = SubResource("Curve_iy3jj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fl16a"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 6.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_reusw")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_iy3jj")
+color = Color(0.258824, 0.239216, 0.239216, 1)
+color_ramp = SubResource("GradientTexture1D_fl16a")
+
+[sub_resource type="Gradient" id="Gradient_oisnq"]
+colors = PackedColorArray(0.9490196, 0.39215687, 0.67058825, 1, 1, 0.8980392, 0.9372549, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wl5vi"]
+gradient = SubResource("Gradient_oisnq")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_24t87"]
+gradient = SubResource("Gradient_fl16a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fvnle"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 8.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 2.0
+radial_velocity_min = 9.999977
+radial_velocity_max = 19.999977
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 20.0
+radial_accel_max = 40.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_reusw")
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_iy3jj")
+color_ramp = SubResource("GradientTexture1D_24t87")
+color_initial_ramp = SubResource("GradientTexture1D_wl5vi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_reusw"]
+shader = ExtResource("2_oisnq")
+shader_parameter/outline_color = Color(0.9490196, 0.39215687, 0.67058825, 1)
+shader_parameter/outline_size = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odvca"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsx3y"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0qq4"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx7ut"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3eof"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl5vi"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oisnq"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24t87"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvnle"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h33d"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71sq2"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvxct"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjf71"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4r0n"]
+atlas = ExtResource("4_oisnq")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lq5ip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odvca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsx3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0qq4")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odvca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsx3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0qq4")
+}],
+"loop": false,
+"name": &"EndSpin",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bx7ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3eof")
+}],
+"loop": false,
+"name": &"Hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl5vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oisnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24t87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvnle")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h33d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71sq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvxct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjf71")
+}],
+"loop": true,
+"name": &"Spin",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0qq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsx3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odvca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4r0n")
+}],
+"loop": false,
+"name": &"StartSpin",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_reusw"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fl16a"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_reusw"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpinParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_iy3jj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"StartSpin"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpinParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WindupSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpinningSound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StoppingSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wl5vi"]
+resource_name = "endCharge"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"EndSpin"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpinParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"endFullCharge"
+}, {
+"args": [],
+"method": &"endCharge"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpinningSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StoppingSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_oisnq"]
+resource_name = "startCharge"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"StartSpin"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpinParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"startFullCharge"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WindupSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpinningSound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ys2ib"]
+_data = {
+&"Dead": SubResource("Animation_reusw"),
+&"RESET": SubResource("Animation_iy3jj"),
+&"endCharge": SubResource("Animation_wl5vi"),
+&"startCharge": SubResource("Animation_oisnq")
+}
+
+[node name="Ripperfloof" type="CharacterBody2D" unique_id=1515950279 groups=["EnemyCollider"]]
+top_level = true
+collision_layer = 9
+motion_mode = 1
+script = ExtResource("1_oisnq")
+moveSpeed = 16.0
+maxSpeed = 20.0
+maxHealth = 20
+contactDamage = 20.0
+knockbackValue = 2.5
+deathFlungEnemy = "ripperfloof_flung"
+deathMomentum = 25
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1802491300]
+target_desired_distance = 4.0
+path_postprocessing = 1
+radius = 4.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=315600996]
+z_index = -1
+amount = 16
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_fl16a")
+
+[node name="SpinParticles" type="GPUParticles2D" parent="." unique_id=269296946]
+z_index = -1
+emitting = false
+amount = 16
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_fvnle")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1083542941]
+material = SubResource("ShaderMaterial_reusw")
+sprite_frames = SubResource("SpriteFrames_lq5ip")
+animation = &"StartSpin"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114272092]
+shape = SubResource("CircleShape2D_reusw")
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=600725256 groups=["EnemyCollider"]]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=924577768]
+shape = SubResource("CircleShape2D_fl16a")
+
+[node name="SoundHurt" type="AudioStreamPlayer2D" parent="." unique_id=1372249585]
+stream = ExtResource("4_24t87")
+max_distance = 512.0
+
+[node name="SoundBladeImpact" type="AudioStreamPlayer2D" parent="." unique_id=1964223187]
+stream = ExtResource("6_wl5vi")
+max_distance = 256.0
+
+[node name="WindupSound" type="AudioStreamPlayer2D" parent="." unique_id=51767514]
+stream = ExtResource("6_fvnle")
+volume_db = -10.0
+pitch_scale = 0.7
+max_distance = 256.0
+
+[node name="SpinningSound" type="AudioStreamPlayer2D" parent="." unique_id=1120226080]
+stream = ExtResource("7_3h33d")
+volume_db = -10.0
+pitch_scale = 0.7
+max_distance = 256.0
+
+[node name="StoppingSound" type="AudioStreamPlayer2D" parent="." unique_id=372572981]
+stream = ExtResource("8_71sq2")
+volume_db = -10.0
+pitch_scale = 0.7
+max_distance = 256.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=600466558]
+libraries/ = SubResource("AnimationLibrary_ys2ib")
+autoplay = &"RESET"
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1198823930]
+target_position = Vector2(120, 0)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

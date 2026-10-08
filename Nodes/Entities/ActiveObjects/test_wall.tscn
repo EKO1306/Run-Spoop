@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cgvrsuk67ykbk"]
+
+[ext_resource type="Script" uid="uid://c8w05dju3eblc" path="res://Scripts/Misc. Entities/test_wall.gd" id="1_lm4kf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raxlo"]
+size = Vector2(32, 16)
+
+[sub_resource type="Gradient" id="Gradient_lm4kf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_06wvc"]
+gradient = SubResource("Gradient_lm4kf")
+width = 32
+height = 16
+
+[node name="testWall" type="StaticBody2D" unique_id=1422808581]
+script = ExtResource("1_lm4kf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=306788340]
+shape = SubResource("RectangleShape2D_raxlo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=621854148]
+texture = SubResource("GradientTexture2D_06wvc")

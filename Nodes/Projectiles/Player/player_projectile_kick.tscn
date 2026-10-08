@@ -60,8 +60,8 @@ _data = {
 }
 
 [node name="PlayerProjectileKick" type="Area2D" unique_id=1349320142 groups=["Projectile"]]
-collision_layer = 32
-collision_mask = 48
+collision_layer = 48
+collision_mask = 32
 script = ExtResource("1_l6jsl")
 attackDamage = 25
 isPlayerAttack = true

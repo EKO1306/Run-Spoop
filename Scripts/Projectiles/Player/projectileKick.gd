@@ -13,7 +13,6 @@ func projectileDeath(despawn, hitEnemy = false):
 			$DeathSound.play()
 	else:
 		nodePlayer.velocity = direction * - 5.0 / get_physics_process_delta_time()
-		print(nodePlayer.velocity)
 		if not hitEnemy:
 			$DeathSound.volume_db -= 10
 		$DeathSound.play()

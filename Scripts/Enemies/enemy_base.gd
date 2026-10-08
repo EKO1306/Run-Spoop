@@ -1,21 +1,54 @@
 extends CharacterBody2D
 
+@export_category("Basic Stats")
 @export var maxHealth : int
 @onready var statHealth = maxHealth
 @export var contactDamage : float
-@export var deathMomentum : int
-@export var deathFlungEnemy : String
 @export var knockbackValue : float
 @export var rotateToPlayer = true
+@export_enum("Small", "Medium", "Large") var spawnSize : int
+
+@export_subgroup("Death Fling")
+@export var deathFlungEnemy : String
+@export var deathMomentum : int
 
 @onready var nodePlayer = get_tree().get_current_scene().main.get_node("Player")
 @onready var nodeSprite = $AnimatedSprite2D
 @onready var nodeAnimPlayer = $AnimationPlayer
 
-var alive = true
-var deathTimer = 0
+var alive := true
+var deathTimer := 0.0
+var spawning := false
+var arenaSource : Node2D
+var waveSource : int
 
 var random = RandomNumberGenerator.new()
+
+func _ready() -> void:
+	if not visible:
+		process_mode = Node.PROCESS_MODE_DISABLED
+
+func trigger(waveNo : int, arena : Node2D) -> bool:
+	if spawning:
+		return false
+	var spawnEffect
+	if spawnSize == 0:
+		spawnEffect = preload("res://Nodes/Enemies/Misc/enemy_spawn_small.tscn")
+	elif spawnSize == 1:
+		spawnEffect = preload("res://Nodes/Enemies/Misc/enemy_spawn_medium.tscn")
+	else:
+		spawnEffect = preload("res://Nodes/Enemies/Misc/enemy_spawn_medium.tscn")
+	spawnEffect = spawnEffect.instantiate()
+	spawnEffect.global_position = global_position
+	spawnEffect.spawnedEnemy = self
+	get_tree().current_scene.main.add_child(spawnEffect)
+	waveSource = waveNo
+	arenaSource = arena
+	return true
+
+func spawn() -> void:
+	show()
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _process(delta: float) -> void:
 	if not alive:
@@ -35,10 +68,13 @@ func _physics_process(delta: float) -> void:
 	rotToPlayer(delta)
 	for node in $CollisionArea.get_overlapping_areas():
 		if node.is_in_group("Player"):
-			if node.get_parent().onHit(contactDamage, self):
-				playAnim("Attack", true, true)
+			contactAttack()
 	postPhysics(delta)
 	moveSlide(delta)
+
+func contactAttack() -> void:
+	if nodePlayer.onHit(contactDamage, self):
+		playAnim("Attack", true, true)
 
 func rotToPlayer(_delta):
 	if rotateToPlayer:
@@ -63,6 +99,10 @@ func postPhysics(_delta):
 func onHit(damage, projectile = null):
 	if not alive:
 		return false
+	calcHit(damage, projectile)
+	return true
+
+func calcHit(damage, projectile = null):
 	statHealth -= damage
 	playAnim("Hurt",true, true)
 	$SoundHurt.play()
@@ -71,7 +111,6 @@ func onHit(damage, projectile = null):
 	if statHealth <= 0:
 		onDeath(projectile)
 	postHit(damage, projectile)
-	return true
 
 func postHit(_damage, _projectile = null):
 	pass
@@ -79,7 +118,7 @@ func postHit(_damage, _projectile = null):
 func onDeath(projectile = null):
 	if projectile != null:
 		if projectile.isPlayerAttack:
-			nodePlayer.addMomentum(deathMomentum)
+			nodePlayer.changeMomentum(deathMomentum)
 			var flungEnemy = load("res://Nodes/Projectiles/Flung/" + deathFlungEnemy + ".tscn").instantiate()
 			flungEnemy.global_position = global_position
 			if projectile != null:
@@ -88,6 +127,8 @@ func onDeath(projectile = null):
 	nodeAnimPlayer.play("Dead")
 	alive = false
 	deathTimer = 1.0
+	if arenaSource != null:
+		arenaSource.triggerComplete(waveSource)
 	$CollisionArea.monitoring = false
 	$CollisionArea.monitorable = false
 	$CollisionShape2D.disabled = true

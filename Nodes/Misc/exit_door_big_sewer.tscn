@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dhfwfq1lrhivk"]
+
+[ext_resource type="Script" uid="uid://d4edsf1rrx4pf" path="res://Scripts/Misc/exit_door.gd" id="1_d5os3"]
+[ext_resource type="Texture2D" uid="uid://dpcwsx770rrkd" path="res://Images/Tiles/Sprites/Sewer/ExitDoorSewerBig.png" id="2_wjaf7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5os3"]
+atlas = ExtResource("2_wjaf7")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn5vj"]
+atlas = ExtResource("2_wjaf7")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7goa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5os3")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn5vj")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciiux"]
+size = Vector2(48, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tn5vj"]
+size = Vector2(44, 40)
+
+[node name="ExitDoorBigSewer" type="Area2D" unique_id=397964715]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_d5os3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=241876821]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_f7goa")
+animation = &"Closed"
+autoplay = "Closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944124429]
+position = Vector2(0, -37)
+shape = SubResource("RectangleShape2D_ciiux")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1562402626 groups=["Terrain"]]
+
+[node name="DoorCollision" type="CollisionShape2D" parent="StaticBody2D" unique_id=873307560]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_tn5vj")

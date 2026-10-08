@@ -197,14 +197,15 @@ _data = {
 }
 
 [node name="Floof" type="CharacterBody2D" unique_id=1515950279 groups=["EnemyCollider"]]
+top_level = true
 collision_layer = 9
 motion_mode = 1
 script = ExtResource("1_fl16a")
 maxHealth = 10
 contactDamage = 20.0
-deathMomentum = 15
-deathFlungEnemy = "floof_flung"
 knockbackValue = 5.0
+deathFlungEnemy = "floof_flung"
+deathMomentum = 15
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=315600996]
 z_index = -1
@@ -217,6 +218,8 @@ material = SubResource("ShaderMaterial_reusw")
 sprite_frames = SubResource("SpriteFrames_lq5ip")
 animation = &"Idle"
 autoplay = "Idle"
+frame = 1
+frame_progress = 0.8025553
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114272092]
 shape = SubResource("CircleShape2D_reusw")

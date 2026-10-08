@@ -12,9 +12,8 @@ var targetPos
 var activated = false
 
 func postPhysics(delta):
-	if not canMove():
-		return
-	calcMovement(delta)
+	if canMove():
+		calcMovement(delta)
 
 func calcMovement(delta) -> void:
 	if global_position.distance_to(nodePlayer.global_position) >= deactivationDistance:
@@ -22,14 +21,17 @@ func calcMovement(delta) -> void:
 	elif global_position.distance_to(nodePlayer.global_position) < activationDistance:
 		activated = true
 	if activated:
-		navAgentUpdateTimer -= delta
-		if navAgentUpdateTimer <= 0:
-			navAgentUpdateTimer += 0.5
-			nodeNavAgent.target_position = nodePlayer.global_position
-			targetPos = nodeNavAgent.get_next_path_position()
-		velocity = velocity.lerp(maxSpeed * global_position.direction_to(targetPos),delta * moveSpeed)
+		move(delta)
 	else:
 		navAgentUpdateTimer = 0
+
+func move(delta) -> void:
+	navAgentUpdateTimer -= delta
+	if navAgentUpdateTimer <= 0:
+		navAgentUpdateTimer += 0.5
+		nodeNavAgent.target_position = nodePlayer.global_position
+		targetPos = nodeNavAgent.get_next_path_position()
+	velocity = velocity.lerp(maxSpeed * global_position.direction_to(targetPos),delta * moveSpeed)
 
 func canMove() -> bool:
 	return true

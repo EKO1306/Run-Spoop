@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://l3tkdwfq3xc6"]
+
+[ext_resource type="Script" uid="uid://c8gp777so2nes" path="res://Scripts/Enemies/Void/void_part.gd" id="1_qd075"]
+[ext_resource type="Texture2D" uid="uid://e1ouy5g0ibmk" path="res://Images/Sprites/Enemies/monster.png" id="1_udrl2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udrl2"]
+size = Vector2(512, 1)
+
+[node name="VoidPart" type="Area2D" unique_id=1150158338]
+script = ExtResource("1_qd075")
+
+[node name="Sprite" type="TextureRect" parent="." unique_id=932261055]
+z_index = 69
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_udrl2")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Void" type="ColorRect" parent="Sprite" unique_id=661995539]
+z_index = 69
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -528.0
+offset_right = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.03529412, 0.039215688, 0.078431375, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1088816675]
+position = Vector2(-256, 0)
+shape = SubResource("RectangleShape2D_udrl2")
